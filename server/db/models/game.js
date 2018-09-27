@@ -17,7 +17,7 @@ const Game = db.define('game', {
   },
   score: {
     type: Sequelize.INTEGER,
-    defaultValue: {min: 0},
+    defaultValue: 0,
   },
 })
 
