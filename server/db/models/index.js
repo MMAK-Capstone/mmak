@@ -5,6 +5,12 @@ const Review = require('./review');
 
 Review.belongsTo(User);
 Review.belongsTo(Game);
+User.hasMany(Review);
+Game.hasMany(Review);
+User.hasMany(Game);
+Game.belongsTo(User);
+Question.hasMany(Game);
+Game.hasMany(Question);
 
 /**
  * If we had any associations to make, this would be a great place to put them!
