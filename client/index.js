@@ -13,12 +13,12 @@ injectTapEventPlugin()
 import './socket'
 
 ReactDOM.render(
-  <MuiThemeProvider>
+<MuiThemeProvider>
   <Provider store={store}>
     <Router history={history}>
       <App />
     </Router>
   </Provider>
-  </MuiThemeProvider>,
+</MuiThemeProvider>,
   document.getElementById('app')
 )
