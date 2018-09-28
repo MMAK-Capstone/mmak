@@ -16,6 +16,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import Avatar from '@material-ui/core/Avatar';
 
 
+
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -67,7 +68,7 @@ const we = [
 class Homepage extends Component {
   render(){
     return (
-      <div>
+    <div>   
     <AppBar position="static">
       <Toolbar>
         <Typography variant="title" color="inherit">NiceLogo</Typography>
@@ -104,5 +105,3 @@ class Homepage extends Component {
 }
 
 export default withStyles(styles)(Homepage);
-
-
