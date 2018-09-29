@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
 import Iframe from 'react-iframe';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
+// import Card from '@material-ui/core/Card';
+// import CardActions from '@material-ui/core/CardActions';
+// import CardContent from '@material-ui/core/CardContent';
 
 const styles = theme => ({
     card: {
@@ -35,6 +40,13 @@ class Dashboard extends Component {
     render (){
         return (
             <div>
+              <AppBar position="static">
+                <Toolbar>
+                  <Typography variant="title" color="inherit">Mmak's Game Room</Typography>
+                  <Button component={Link} to="/">Homepage</Button>
+                  <Button>Logout</Button>
+                </Toolbar>
+            </AppBar>
             <h1>This is the Dashboard</h1>
                 <Iframe url="https://test-game-46120.firebaseapp.com/"
                 width="450px"
