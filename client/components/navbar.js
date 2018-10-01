@@ -3,28 +3,30 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography'
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>Mmak's Game Room</h1>
-    <nav>
+    <AppBar position="static">
+      <Toolbar>
+         <Typography variant="title" color="inherit" style={{flexGrow: 1}}>Mmak's Game Room</Typography>
       {isLoggedIn ? (
         <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
+          <Button color="inherit" component={Link} to="/homepage">HomePage</Button>
+          <a href="#" onClick={handleClick}>Logout</a>
         </div>
       ) : (
         <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <Button color="inherit" component={Link} to="/login" >Login</Button>
+          <Button color="inherit" component={Link} to="/signup" >Sign Up</Button>
         </div>
       )}
-    </nav>
-    <hr />
+      </Toolbar>
+    </AppBar>
   </div>
 )
 
