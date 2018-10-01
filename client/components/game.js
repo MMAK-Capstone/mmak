@@ -43,7 +43,7 @@ const GamePage = () => (
                 <Button component={Link} to="/dashboard">Your Dashboard</Button>
             </Toolbar>
         </AppBar>
-        <h1>This is the Game Page</h1>
+        <h2 align='center'>City Runner</h2> {/*Make this dynamic based on which game was selected from dashboard*/}
         <Iframe url="https://test-game-46120.firebaseapp.com/"
                 width="100%"
                 height="650px"
