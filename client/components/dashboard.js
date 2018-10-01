@@ -47,10 +47,10 @@ let testGames = {
   }
 
 const Dashboard = ({ classes }) => {
-  let name = testGame.name;
-  let description = testGame.description;
-  let gif = testGame.gif
-  let score = testGame.score;
+  // let name = testGame.name;
+  // let description = testGame.description;
+  // let gif = testGame.gif
+  // let score = testGame.score;
 
   return (
             <div>
