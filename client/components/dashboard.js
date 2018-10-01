@@ -1,9 +1,11 @@
-import React, {Component} from 'react';
-import Iframe from 'react-iframe';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
 
 const styles = theme => ({
     card: {
@@ -29,24 +31,31 @@ const styles = theme => ({
     expandOpen: {
       transform: 'rotate(180deg)',
     },
+
+    rightToolbar: {
+      marginLeft: 'auto',
+      marginRight: -12
+    }
   });
   
-class Dashboard extends Component {
-    render (){
-        return (
+const Dashboard = ({ classes }) => (
             <div>
+              <AppBar position="static">
+                <Toolbar>
+                  <Typography variant="title" color="inherit">Mmak's Game Room</Typography>
+                  <Button component={Link} to="/">Homepage</Button>
+                  <Button>Logout</Button>
+                  <section className={classes.rightToolbar}>
+                    <Typography variant="title" color="inherit">Hello, Asya!</Typography>
+                  </section>
+                </Toolbar>
+              </AppBar>
             <h1>This is the Dashboard</h1>
-                <Iframe url="https://test-game-46120.firebaseapp.com/"
-                width="450px"
-                height="450px"
-                id="myId"
-                className="myClassname"
-                display="initial"
-                position="relative"
-                allowFullScreen/>
             </div>
         )
-    }
-}
+
+Dashboard.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(Dashboard);
