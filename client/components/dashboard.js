@@ -37,8 +37,22 @@ const styles = theme => ({
       marginRight: -12
     }
   });
+
+let testGames = {
+    name: "City Runner" ,
+    description: "Zip through the city and avoid running into the obstacles. If you do, then you'll restart the level. Try to get the best score possible. And have fun!",
+    gif: "/gamPics/testgame.gif",
+    score: 250
   
-const Dashboard = ({ classes }) => (
+  }
+
+const Dashboard = ({ classes }) => {
+  let name = testGame.name;
+  let description = testGame.description;
+  let gif = testGame.gif
+  let score = testGame.score;
+
+  return (
             <div>
               <AppBar position="static">
                 <Toolbar>
@@ -51,8 +65,11 @@ const Dashboard = ({ classes }) => (
                 </Toolbar>
               </AppBar>
             <h1>This is the Dashboard</h1>
+
+
             </div>
-        )
+  )
+}
 
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,

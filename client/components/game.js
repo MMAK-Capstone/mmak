@@ -31,7 +31,7 @@ const styles = theme => ({
       transform: 'rotate(180deg)',
     }
   });
-  
+
 const GamePage = () => (
     <div>
         <AppBar position="static">
