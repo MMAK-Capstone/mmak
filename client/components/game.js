@@ -1,5 +1,4 @@
 import React from 'react';
-import Iframe from 'react-iframe';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -44,14 +43,9 @@ const GamePage = () => (
             </Toolbar>
         </AppBar>
         <h2 align='center'>City Runner</h2> {/*Make this dynamic based on which game was selected from dashboard*/}
-        <Iframe url="https://test-game-46120.firebaseapp.com/"
-                width="100%"
-                height="650px"
-                id="myId"
-                className="myGames"
-                display="initial"
-                position="relative"
-                allowFullScreen/>
+        <div class="resp-container">
+          <iframe class="resp-iframe" src="https://test-game-46120.firebaseapp.com/" gesture="media"  allow="encrypted-media" allowfullscreen scrolling="no"></iframe>
+        </div>
     </div>
 )
 
