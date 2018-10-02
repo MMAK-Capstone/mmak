@@ -61,7 +61,7 @@ app.get('/compare-images', (request, response) => {
 				}
 			}
 		};
-		var bucket = new AWS.S3({ params: { Bucket: BUCKET_ID } });
+		// var bucket = new AWS.S3({ params: { Bucket: BUCKET_ID } });
 		rek.compareFaces(params, function(err, data) {
 			console.log('inside compare', data);
 			if (err) {
@@ -86,14 +86,17 @@ app.post('/test-upload', (request, response) => {
 			const type = fileType(buffer);
 			const timestamp = Date.now().toString();
 			const fileName = `${timestamp}`;
+			this.filetoDb = fileName.toString() + '.jpg';
+			response.json(fileName);
 			const data = await uploadFile(buffer, fileName, type);
 
-			return response.status(200).send(data);
+			return response.status(200).send(response);
 		} catch (err) {
 			return response.status(400).send(err);
 		}
 	});
 });
+
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
 if (process.env.NODE_ENV === 'test') {
