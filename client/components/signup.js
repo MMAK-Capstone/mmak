@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import TextField from 'material-ui/TextField';
 import Camera from 'react-camera';
 import { connect } from 'react-redux';
-import signupthunk from '../store';
+import { signupthunk } from '../store';
 import Grid from '@material-ui/core/Grid';
 // import FormLabel from '@material-ui/core/FormLabel';
 import Typography from '@material-ui/core/Typography';
@@ -44,17 +44,17 @@ class Signup extends Component {
 		super();
 		this.state = {
 			file: null,
-
-			username: ''
+			username: '',
+			fileName: '',
+			password: ''
 		};
 		this.takePicture = this.takePicture.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.submitFile = this.submitFile.bind(this);
 	}
 	submitFile = (event) => {
 		event.preventDefault();
-		this.props.submitUser({ ...this.state }).then(() => {
-			this.props.history.push('/');
-		});
+
 		const formData = new FormData();
 		formData.append('file', this.state.file);
 		axios
@@ -66,10 +66,19 @@ class Signup extends Component {
 			})
 			.then((response) => {
 				// handle your response;
-				console.log('response', response);
-			})
-			.catch((error) => {
-				console.error(error);
+				console.log('response from AWS', response.data);
+				console.log('filename from state', response);
+				this.setState({ fileName: response.data }); /// state is changin here for fileName
+				console.log('fileName from state', this.state.fileName);
+				this.props
+					.submitUser({ ...this.state })
+					.then(() => {
+						this.props.history.push('/');
+					})
+					.catch((error) => {
+						console.error(error);
+					});
+				console.log('State is', this.state); // fileName couldnt find in state
 			});
 	};
 	handleChange(evt) {
@@ -128,7 +137,11 @@ class Signup extends Component {
 									}}
 								/>
 								<br />
-								<TextField floatingLabelText="Enter Username" onChange={this.handleChange} />
+								<TextField
+									floatingLabelText="Enter Username"
+									name="username"
+									onChange={this.handleChange}
+								/>
 								<br />
 								<TextField type="password" floatingLabelText="Enter Password" />
 								<Button type="submit" style={style.captureButton} variant="raised" color="secondary">

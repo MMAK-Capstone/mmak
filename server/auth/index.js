@@ -21,9 +21,11 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
 	try {
+		console.log('file name is from axios to express route', req.body.fileName);
 		const user = await User.create({
 			username: req.body.username,
-			imageUrl: req.body.file
+			imageUrl: req.body.fileName,
+			password: req.body.password
 		});
 		req.login(user, (err) => (err ? next(err) : res.json(user)));
 	} catch (err) {
