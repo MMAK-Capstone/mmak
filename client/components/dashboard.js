@@ -54,7 +54,7 @@ const Dashboard = (props) => {
   const {classes} = props;
   return (
     <div>
-      <h2 align = "center">Hello {testUser.username}</h2> 
+      <h2 align = "center" >Hello {testUser.username}</h2> 
       <div align="center"><Avatar src={testUser.imageUrl}/></div>
           <div className={classes.root}>
             <GridList align ="center" cellHeight={180} spacing ={40} className={classes.gridList}>
