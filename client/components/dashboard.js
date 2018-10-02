@@ -51,14 +51,15 @@ const styles = theme => ({
       backgroundColor: theme.palette.background.paper
     },
     gridList: {
-      width: 900,
-      height: 450,
+      width: 1000,
+      height: 450
     },
     icon: {
       color: 'rgba(255, 255, 255, 0.54)',
     }
   });
 
+//TODO: This dummy data needs to be replaced by information in our database for our actual games. Then redux will need to be wired up.  
 let testGames = [
   {
     name: "City Runner" ,
@@ -77,6 +78,12 @@ let testGames = [
   }
 ];
 
+let testUser = 
+  {
+    username: "Asya-Is-Awesome",
+    imageUrl: '/pictures/Asya.jpg'
+  };
+
 const Dashboard = (props) => {
   const {classes} = props;
   return (
@@ -87,14 +94,13 @@ const Dashboard = (props) => {
               <Button component={Link} to="/">Homepage</Button>
               <Button>Logout</Button>
               <section className={classes.rightToolbar}>
-            <Typography variant="title" color="inherit">Hello, Asya!</Typography>
               </section>
           </Toolbar>
       </AppBar>
-          <h1 align = "center">This is the Dashboard</h1>
+          <h2 align = "center">Hello {testUser.username}</h2>
           <div className={classes.root}>
-            <GridList align ="center" cellHeight={500} className={classes.gridList}>
-              <GridListTile key="Subheader" cols={2} style={{ height: 'auto', width:'auto'}}>
+            <GridList align ="center" cellHeight={180} spacing ={40} className={classes.gridList}>
+              <GridListTile key="Subheader" cols={2} style={{ height: 'auto'}}>
                 <ListSubheader component="div">Your Dashboard</ListSubheader>
               </GridListTile>
               {testGames.map(game => (
