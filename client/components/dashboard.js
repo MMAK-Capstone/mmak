@@ -1,11 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import { Link } from 'react-router-dom'
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -14,35 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 
 const styles = theme => ({
-    card: {
-      maxWidth: 400,
-    },
-    media: {
-      height: 0,
-      paddingTop: '56.25%', // 16:9
-    },
-    actions: {
-      display: 'flex',
-    },
-    expand: {
-      transform: 'rotate(0deg)',
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-      }),
-      marginLeft: 'auto',
-      [theme.breakpoints.up('sm')]: {
-        marginRight: -8,
-      },
-    },
-    expandOpen: {
-      transform: 'rotate(180deg)',
-    },
-
-    rightToolbar: {
-      marginLeft: 'auto',
-      marginRight: -12
-    }, 
-
     root: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -52,14 +18,14 @@ const styles = theme => ({
     },
     gridList: {
       width: 1000,
-      height: 450
+      height: 500
     },
     icon: {
       color: 'rgba(255, 255, 255, 0.54)',
     }
   });
 
-//TODO: This dummy data needs to be replaced by information in our database for our actual games. Then redux will need to be wired up.  
+//TODO: Link up redux and remove dummy data from let testGames through let testUser. 
 let testGames = [
   {
     name: "City Runner" ,
@@ -84,19 +50,11 @@ let testUser =
     imageUrl: '/pictures/Asya.jpg'
   };
 
+
 const Dashboard = (props) => {
   const {classes} = props;
   return (
     <div>
-      <AppBar position="static">
-          <Toolbar>
-            <Typography variant="title" color="inherit">Mmak's Game Room</Typography>
-              <Button component={Link} to="/">Homepage</Button>
-              <Button>Logout</Button>
-              <section className={classes.rightToolbar}>
-              </section>
-          </Toolbar>
-      </AppBar>
           <h2 align = "center">Hello {testUser.username}</h2>
           <div className={classes.root}>
             <GridList align ="center" cellHeight={180} spacing ={40} className={classes.gridList}>
