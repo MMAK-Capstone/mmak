@@ -37,3 +37,12 @@ form div {
   height: 100%;
   border: 0;
 }
+
+html {
+  background: url(dashboard/sampleBackground.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+ }
+

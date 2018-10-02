@@ -5,8 +5,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
+import Avatar from '@material-ui/core/Avatar';
 
 const styles = theme => ({
     root: {
@@ -14,14 +13,14 @@ const styles = theme => ({
       flexWrap: 'wrap',
       justifyContent: 'space-around',
       overflow: 'hidden',
-      backgroundColor: theme.palette.background.paper
+      backgroundColor: theme.palette.background.paper,
+      ...theme.mixins.gutters(),
+      paddingTop: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing.unit * 2,
     },
     gridList: {
       width: 1000,
       height: 500
-    },
-    icon: {
-      color: 'rgba(255, 255, 255, 0.54)',
     }
   });
 
@@ -55,7 +54,8 @@ const Dashboard = (props) => {
   const {classes} = props;
   return (
     <div>
-          <h2 align = "center">Hello {testUser.username}</h2>
+      <h2 align = "center">Hello {testUser.username}</h2> 
+      <div align="center"><Avatar src={testUser.imageUrl}/></div>
           <div className={classes.root}>
             <GridList align ="center" cellHeight={180} spacing ={40} className={classes.gridList}>
               <GridListTile key="Subheader" cols={2} style={{ height: 'auto'}}>
@@ -66,19 +66,13 @@ const Dashboard = (props) => {
                   <img src={game.gif} alt={game.name} />
                   <GridListTileBar
                     title={game.name}
-                    subtitle={<span>{game.description}</span>}
-                    actionIcon={
-                      <IconButton className={classes.icon}>
-                        <InfoIcon />
-                      </IconButton>
-                    }
+                    subtitle={<span>Current Score: {game.score}</span>}
                   />
                 </GridListTile>
               ))}
             </GridList>
           </div>
-    </div>
-
+    </div> 
   )
 }
 
