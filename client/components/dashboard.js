@@ -6,6 +6,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Avatar from '@material-ui/core/Avatar';
+import {Link} from 'react-router-dom'
 
 const styles = theme => ({
     root: {
@@ -65,7 +66,7 @@ const Dashboard = (props) => {
                 <GridListTile key={game.gif}>
                   <img src={game.gif} alt={game.name} />
                   <GridListTileBar
-                    title={game.name}
+                    title={<Link to={`/game/${game.id}`}>{game.name}</Link>}
                     subtitle={<span>Current Score: {game.score}</span>}
                   />
                 </GridListTile>
