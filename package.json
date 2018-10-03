@@ -48,6 +48,7 @@
     "history": "^4.6.3",
     "iframe-resizer": "^3.6.2",
     "material-ui": "^0.20.2",
+    "material-ui-background": "^0.1.2",
     "morgan": "^1.8.1",
     "multiparty": "^4.2.1",
     "passport": "^0.3.2",
