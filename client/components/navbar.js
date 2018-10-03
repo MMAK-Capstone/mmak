@@ -13,16 +13,19 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <AppBar position="static">
       <Toolbar>
-         <Typography variant="title" color="inherit" style={{flexGrow: 1}}>Mmak's Game Room</Typography>
+         <Typography variant="title" color="inherit" style={{flexGrow: 1}}>{<img src="logo.png"/>}</Typography>
       {isLoggedIn ? (
         <div>
-          <Button color="inherit" component={Link} to="/homepage">HomePage</Button>
+          <Button color="inherit" component={Link} to="/">HomePage</Button>
+          <Button color="inherit" component={Link} to="/dashboard">Your Dashboard</Button>
           <a href="#" onClick={handleClick}>Logout</a>
         </div>
       ) : (
         <div>
+          <Button color="inherit" component={Link} to="/">HomePage</Button>{/*TODO: Once Login&SignUp are hooked up, then remove this button, becasue it will only appear when a user is signed in*/}
           <Button color="inherit" component={Link} to="/login" >Login</Button>
           <Button color="inherit" component={Link} to="/signup" >Sign Up</Button>
+          <Button color="inherit" component={Link} to="/dashboard">Your Dashboard</Button> {/*TODO: Once Login&SignUp are hooked up, remove this button, so that it only appears when signed in*/}
         </div>
       )}
       </Toolbar>
