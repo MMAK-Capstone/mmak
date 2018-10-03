@@ -46,3 +46,20 @@ html {
   background-size: cover;
  }
 
+ .link {
+  color: #FFF;
+}
+
+.link:hover {
+   color: #00F
+}
+
+.greeting {
+  color: #FFF;
+  background: lightskyblue
+}
+
+.game {
+  color: #FFF;
+  background: lightskyblue
+}

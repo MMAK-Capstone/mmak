@@ -21,7 +21,7 @@ const styles = theme => ({
     },
     gridList: {
       width: 1000,
-      height: 500
+      height: 350
     }
   });
 
@@ -55,7 +55,7 @@ const Dashboard = (props) => {
   const {classes} = props;
   return (
     <div>
-      <h2 align = "center" >Hello {testUser.username}</h2> 
+      <h2 align = "center" className="greeting">Hello {testUser.username}</h2> 
       <div align="center"><Avatar src={testUser.imageUrl}/></div>
           <div className={classes.root}>
             <GridList align ="center" cellHeight={180} spacing ={40} className={classes.gridList}>
@@ -66,7 +66,7 @@ const Dashboard = (props) => {
                 <GridListTile key={game.gif}>
                   <img src={game.gif} alt={game.name} />
                   <GridListTileBar
-                    title={<Link to={`/game/${game.id}`}>{game.name}</Link>}
+                    title={<Link to={`/game/${game.id}`} className="link">{game.name}</Link>}
                     subtitle={<span>Current Score: {game.score}</span>}
                   />
                 </GridListTile>
