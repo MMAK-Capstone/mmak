@@ -19,6 +19,10 @@ const Game = db.define('game', {
     type: Sequelize.INTEGER,
     defaultValue: 0,
   },
+  gameUrl: {
+    type: Sequelize.STRING,
+    allowNull: false
+  }
 })
 
 module.exports = Game

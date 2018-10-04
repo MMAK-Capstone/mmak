@@ -28,18 +28,22 @@ const styles = theme => ({
 //TODO: Link up redux and remove dummy data from let testGames through let testUser. 
 let testGames = [
   {
+    id: 1,
     name: "Math Masters" ,
     description: "Are the math facts and riddles true or false? Earn 100 points to win!",
     gif: "/gamePics/math-masters.gif",
-    score: 250
+    score: 250,
+    gameUrl:"https://kswright.itch.io/math-masters"
   
   },
 
   {
-    name: "Puzzle Happiness" ,
+    id: 2,
+    name: "CityRunner" ,
     description: "Solve the puzzle before the timer goes off so that you can see your beautiful creation.",
     gif: "/gamePics/testpuzzle.gif",
-    score: 35
+    score: 35, 
+    gameUrl:"https://test-game-46120.firebaseapp.com/"
   
   }
 ];
