@@ -63,3 +63,7 @@ html {
   color: #FFF;
   background: lightskyblue
 }
+
+.inline-block-child {
+  display: inline-block;
+}
