@@ -28,9 +28,9 @@ const styles = theme => ({
 //TODO: Link up redux and remove dummy data from let testGames through let testUser. 
 let testGames = [
   {
-    name: "City Runner" ,
-    description: "Zip through the city and avoid running into the obstacles. If you do, then you'll restart the level. Try to get the best score possible. And have fun!",
-    gif: "/gamePics/testgame.gif",
+    name: "Math Masters" ,
+    description: "Are the math facts and riddles true or false? Earn 100 points to win!",
+    gif: "/gamePics/math-masters.gif",
     score: 250
   
   },
@@ -64,10 +64,12 @@ const Dashboard = (props) => {
               </GridListTile>
               {testGames.map(game => (
                 <GridListTile key={game.gif}>
+                <a href={`/game/${game.id}`}>
                   <img src={game.gif} alt={game.name} />
+                </a>
                   <GridListTileBar
-                    title={<Link to={`/game/${game.id}`} className="link">{game.name}</Link>}
-                    subtitle={<span>Current Score: {game.score}</span>}
+                    titlePosition="top" title={<Link to={`/game/${game.id}`} className="link">{game.name}</Link>}
+                    // subtitle={<span>Current Score: {game.score}</span>} {/*Use this functionality if we can get link score from the game to the dashboard*/}
                   />
                 </GridListTile>
               ))}
