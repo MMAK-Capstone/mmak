@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Login, Signup, UserHome, Homepage, Dashboard, GamePage } from './components';
+import { Login, Signup, UserHome, Homepage, Dashboard, GamePage, Categories } from './components';
 import { me } from './store';
 
 /**
@@ -24,6 +24,7 @@ class Routes extends Component {
 				<Route path="/signup" component={Signup} />
 				<Route path="/dashboard" component={Dashboard} /> {/*TODO: This route must be moved to isLoggedIn*/}
 				<Route path="/game" component={GamePage} /> {/*TODO: This route must be moved to isLoggedIn*/}
+        <Route exact path="/categories/:categoryName" component={Categories}/>
 				{isLoggedIn && (
 					<Switch>
 						{/* Routes placed here are only available after logging in */}

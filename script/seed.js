@@ -7,6 +7,11 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
+  // const users = await Promise.all([
+  //   User.create({email: 'cody@email.com', password: '123'}),
+  //   User.create({email: 'murphy@email.com', password: '123'})
+  // ])
+  
   const users = await Promise.all([
     User.create({username: 'asya', password: '123', imageUrl:'pictures/Asya.jpg'}),
     User.create({username: 'keyairra', password: '123', imageUrl:'pictures/Keyairra.jpg'}),
@@ -14,7 +19,23 @@ async function seed() {
     User.create({username: 'michelle', password: '123', imageUrl:'pictures/Michelle.jpg'}),
   ])
 
-  console.log(`seeded ${users.length} users`)
+  const games = [
+    {
+      name: 'Math and Logic',
+      category: 'edu',
+      description: 'Fun and great math problems for you',
+      gif: '/pictures/funGame.png'
+    },
+    {
+      name: 'Fun and Joy',
+      category: 'fun',
+      description: 'Run',
+      gif: '/pictures/mathGame.png'
+    },
+  ]
+
+  await Game.bulkCreate(games);
+  console.log(`seeded ${games.length} games`)
   console.log(`seeded successfully`)
 
   const games = await Promise.all([
@@ -52,6 +73,7 @@ async function runSeed() {
     console.log('db connection closed')
   }
 }
+
 
 // Execute the `seed` function, IF we ran this module directly (`node seed`).
 // `Async` functions always return a promise, so we can use `catch` to handle

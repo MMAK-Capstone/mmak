@@ -10,4 +10,5 @@ export { default as Signup } from './signup';
 export { default as UserHome } from './user-home';
 export { Login } from './auth-form';
 export { default as GamePage } from './game';
+export {default as Categories} from './categories';
 export {default as Review} from './review';

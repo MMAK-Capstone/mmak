@@ -8,6 +8,10 @@ const Game = db.define('game', {
     unique: true,
     allowNull: false,
   },
+  category:{
+    type:   Sequelize.ENUM,
+    values: ['edu', 'fun'],
+  },
   description: {
     type: Sequelize.TEXT,
     allowNull: false
