@@ -86,7 +86,6 @@ class Homepage extends Component {
             <Tab label="Fun Game" component={Link} to="/categories/fun"/>
           </Tabs>
         </Paper>
-
         <div class="footer">
         <div style={styles.root}>
           <GridList cellHeight={110} style={styles.gridList} cols={4}>
@@ -95,7 +94,8 @@ class Homepage extends Component {
                 <Avatar src={tile.img}/>
                 <GridListTileBar title={tile.title} subtitle={tile.description} actionIcon={
                   <a href={tile.linkedin}><IconButton><StarBorderIcon/></IconButton></a>
-                }/></GridListTile>
+                }/>
+              </GridListTile>
             ))}
           </GridList>
         </div>
