@@ -20,8 +20,8 @@ async function seed() {
   ])
 
   const games = await Promise.all([
-    Game.create({name: "Math Masters", description: "Are the math facts and riddles true or false? Earn 100 points to win!", gif:"/gamePics/math-masters.gif", score: 0, gameUrl: "https://kswright.itch.io/math-masters", category: "edu" }),
-    Game.create({name: "Island Runner", description: "How long can you run through the island while dodging vines and branches?", gif:"/pictures/mathGame.png", score: 0, gameUrl: "https://kswright.itch.io/math-masters", category: "fun" })
+    Game.create({name: "Math Masters", description: "Are the math facts and riddles true or false? Earn 100 points to win!", gif:"/gamePics/math-masters.gif", score: 0, gameUrl: "https://mmak-math-masters.firebaseapp.com/", category: "edu" }),
+    Game.create({name: "Island Runner", description: "How long can you run through the island while dodging vines and branches?", gif:"/pictures/mathGame.png", score: 0, gameUrl: "https://island-runner-9bd31.firebaseapp.com/", category: "fun" })
   ])
 
   console.log(`seeded ${games.length} games`)
