@@ -85,7 +85,6 @@ const Dashboard = (props) => {
                 </a>
                   <GridListTileBar
                     titlePosition="top" title={<Link to={`/game/${game.id}`} className="link">{game.name}</Link>}
-                    // subtitle={<span>Current Score: {game.score}</span>} {/*Use this functionality if we can get link score from the game to the dashboard*/}
                   />
                   <Review/>
                 </GridListTile>
