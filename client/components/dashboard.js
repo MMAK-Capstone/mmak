@@ -7,6 +7,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Avatar from '@material-ui/core/Avatar';
 import {Link} from 'react-router-dom'
+import Review from './review';
 
 const styles = theme => ({
     root: {
@@ -16,32 +17,46 @@ const styles = theme => ({
       overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
       ...theme.mixins.gutters(),
-      paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2,
+      paddingTop: theme.spacing.unit * 10,
+      paddingBottom: theme.spacing.unit * 50,//if we add more colums, increase the spacing
     },
     gridList: {
-      width: 1000,
-      height: 350
+      width: 2000,
+      height: 1000
     }
   });
 
 //TODO: Link up redux and remove dummy data from let testGames through let testUser. 
 let testGames = [
   {
-    name: "City Runner" ,
-    description: "Zip through the city and avoid running into the obstacles. If you do, then you'll restart the level. Try to get the best score possible. And have fun!",
-    gif: "/gamePics/testgame.gif",
-    score: 250
+    id: 1,
+    name: "Math Masters" ,
+    description: "Are the math facts and riddles true or false? Earn 100 points to win!",
+    gif: "/gamePics/math-masters.gif",
+    score: 250,
+    gameUrl:"https://kswright.itch.io/math-masters"
   
   },
 
   {
-    name: "Puzzle Happiness" ,
+    id: 2,
+    name: "CityRunner" ,
     description: "Solve the puzzle before the timer goes off so that you can see your beautiful creation.",
     gif: "/gamePics/testpuzzle.gif",
-    score: 35
+    score: 35, 
+    gameUrl:"https://test-game-46120.firebaseapp.com/"
+  
+  },
+  {
+  id: 3,
+    name: "CityRunner" ,
+    description: "Solve the puzzle before the timer goes off so that you can see your beautiful creation.",
+    gif: "/gamePics/testpuzzle.gif",
+    score: 35, 
+    gameUrl:"https://test-game-46120.firebaseapp.com/"
   
   }
+
 ];
 
 let testUser = 
@@ -55,24 +70,27 @@ const Dashboard = (props) => {
   const {classes} = props;
   return (
     <div>
-      <h2 align = "center" className="greeting">Hello {testUser.username}</h2> 
+      <h2 align = "center" className="greeting">Welcome to Your Dashboard, {testUser.username}</h2> 
       <div align="center"><Avatar src={testUser.imageUrl}/></div>
           <div className={classes.root}>
-            <GridList align ="center" cellHeight={180} spacing ={40} className={classes.gridList}>
-              <GridListTile key="Subheader" cols={2} style={{ height: 'auto'}}>
-                <ListSubheader component="div">Your Dashboard</ListSubheader>
-              </GridListTile>
+            <GridList align ="center" cellHeight={45} cols={1}spacing ={250} className={classes.gridList}>
               {testGames.map(game => (
-                <GridListTile key={game.gif}>
+                <div class="parent">
+                <GridListTile class="child inline-block-child" align="center" key={game.gif} style={{height: 650, width: 450}}>
+                <a href={`/game/${game.id}`}>
                   <img src={game.gif} alt={game.name} />
+                </a>
                   <GridListTileBar
-                    title={<Link to={`/game/${game.id}`} className="link">{game.name}</Link>}
-                    subtitle={<span>Current Score: {game.score}</span>}
+                    titlePosition="top" title={<Link to={`/game/${game.id}`} className="link">{game.name}</Link>}
+                    // subtitle={<span>Current Score: {game.score}</span>} {/*Use this functionality if we can get link score from the game to the dashboard*/}
                   />
+                  <Review/>
                 </GridListTile>
+                </div>
               ))}
             </GridList>
           </div>
+          
     </div> 
   )
 }
