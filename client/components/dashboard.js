@@ -34,26 +34,29 @@ let testGames = [
     description: "Are the math facts and riddles true or false? Earn 100 points to win!",
     gif: "/gamePics/math-masters.gif",
     score: 250,
-    gameUrl:"https://kswright.itch.io/math-masters"
+    gameUrl:"https://mmak-math-masters.firebaseapp.com/",
+    category: "edu"
   
   },
 
   {
     id: 2,
-    name: "CityRunner" ,
-    description: "Solve the puzzle before the timer goes off so that you can see your beautiful creation.",
-    gif: "/gamePics/testpuzzle.gif",
+    name: "Island Runner" ,
+    description: "How long can you run through the island while dodging vines and branches? Play this game to find out!",
+    gif: "/gamePics/island-runner.gif",
     score: 35, 
-    gameUrl:"https://test-game-46120.firebaseapp.com/"
+    gameUrl:"https://island-runner-9bd31.firebaseapp.com/",
+    category: "fun"
   
   },
   {
   id: 3,
-    name: "CityRunner" ,
-    description: "Solve the puzzle before the timer goes off so that you can see your beautiful creation.",
-    gif: "/gamePics/testpuzzle.gif",
+    name: "Science Fighter" ,
+    description: "Help the scientist defeat the environmental injustices! Complete level 3 in order to win!",
+    gif: "/gamePics/testgame.gif",
     score: 35, 
-    gameUrl:"https://test-game-46120.firebaseapp.com/"
+    gameUrl:"https://test-game-46120.firebaseapp.com/",
+    category: "edu"
   
   }
 
