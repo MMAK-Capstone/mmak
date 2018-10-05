@@ -78,3 +78,28 @@ html {
   display: inline-block;
 }
 
+.b {
+  position: fixed;
+  right: 250px;
+  top: 200px;
+  width: 150px;
+  border: transparent;
+  align: center;
+  font-size: 250%;
+  font-palette: dark;
+  font-style: italic;
+  font-weight: 600;
+}
+
+/*.b {*/
+  /*position: fixed;*/
+  /*top:200px;*/
+  /*right: 50px;*/
+  /*align: center;*/
+  /*font-size: large;*/
+  /*font-palette: dark;*/
+  /*font-style: italic;*/
+  /*font-weight: 600;*/
+/*}*/
+
+
