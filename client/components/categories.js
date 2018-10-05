@@ -126,6 +126,7 @@ class Categories extends Component {
             </Tabs>
           </Paper>
           <div><img src={typeCategory[0].gif} width="400" height="500"/></div>
+          <div className="b">{typeCategory[0].description}</div>
           <div className="footer">
             <div style={styles.root}>
               <GridList cellHeight={110} style={styles.gridList} cols={4}>

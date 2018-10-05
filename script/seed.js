@@ -19,28 +19,9 @@ async function seed() {
     User.create({username: 'michelle', password: '123', imageUrl:'pictures/Michelle.jpg'}),
   ])
 
-  const games = [
-    {
-      name: 'Math and Logic',
-      category: 'edu',
-      description: 'Fun and great math problems for you',
-      gif: '/pictures/funGame.png'
-    },
-    {
-      name: 'Fun and Joy',
-      category: 'fun',
-      description: 'Run',
-      gif: '/pictures/mathGame.png'
-    },
-  ]
-
-  await Game.bulkCreate(games);
-  console.log(`seeded ${games.length} games`)
-  console.log(`seeded successfully`)
-
   const games = await Promise.all([
-    Game.create({name: "Math Masters", description: "Are the math facts and riddles true or false? Earn 100 points to win!", gif:"/gamePics/math-masters.gif", score: 0, gameUrl: "https://kswright.itch.io/math-masters" }),
-    Game.create({name: "Island Runner", description: "How long can you run through the island while dodging vines and branches?", gif:"/gamePics/testgame.gif", score: 0, gameUrl: "https://kswright.itch.io/math-masters" })
+    Game.create({name: "Math Masters", description: "Are the math facts and riddles true or false? Earn 100 points to win!", gif:"/gamePics/math-masters.gif", score: 0, gameUrl: "https://kswright.itch.io/math-masters", category: 'edu' }),
+    Game.create({name: "Island Runner", description: "How long can you run through the island while dodging vines and branches?", gif:"/gamePics/testgame.gif", score: 0, gameUrl: "https://kswright.itch.io/math-masters", category: 'fun' })
   ])
 
   console.log(`seeded ${games.length} games`)
