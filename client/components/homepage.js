@@ -40,7 +40,6 @@ const styles = theme => ({
   }
 })
 
-
 const we = [
   {
     img: '/pictures/Michelle.JPG',
@@ -68,6 +67,15 @@ const we = [
   }
 ]
 
+const games = [
+  {
+  img: '/pictures/mathGame'
+  },
+  {
+    img: '/pictures/funGame'
+  },
+]
+
 class Homepage extends Component {
   render() {
     return (
@@ -78,6 +86,8 @@ class Homepage extends Component {
             <Tab label="Fun Game" component={Link} to="/categories/fun"/>
           </Tabs>
         </Paper>
+
+        <div class="footer">
         <div style={styles.root}>
           <GridList cellHeight={110} style={styles.gridList} cols={4}>
             {we.map((tile) => (
@@ -89,6 +99,7 @@ class Homepage extends Component {
             ))}
           </GridList>
         </div>
+      </div>
       </div>
     )
   }

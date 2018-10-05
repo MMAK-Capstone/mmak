@@ -8,7 +8,7 @@ router.get('/:categoryName', async (req, res, next) => {
     const category = await Game.findAll({where: {
       category: req.params.categoryName,
       }});
-    res.sendStatus(200).json(category);
+    res.json(category);
   } catch (err) {
     console.log('error with express route to get category');
     next(err);

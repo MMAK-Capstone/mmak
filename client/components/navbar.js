@@ -13,7 +13,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <AppBar position="static">
       <Toolbar>
-         <Typography variant="title" color="inherit" style={{flexGrow: 1}}>{<img src="logo.png"/>}</Typography>
+         <Typography variant="title" color="inherit" style={{flexGrow: 1}}>{<img src="/logo.png"/>}</Typography>
       {isLoggedIn ? (
         <div>
           <Button color="inherit" component={Link} to="/">HomePage</Button>
