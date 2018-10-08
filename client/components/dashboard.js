@@ -6,7 +6,6 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Avatar from '@material-ui/core/Avatar'; //not yet fetching images from collections
 import {Link, withRouter} from 'react-router-dom'
-import Review from './review';
 import {connect} from 'react-redux'
 import {getAllGames} from '../store/game';
 
@@ -58,7 +57,6 @@ class Dashboard extends React.Component {
                   <GridListTileBar
                     titlePosition="top" title={<Link to={`/game/${game.id}`} className="link">{game.name}</Link>}
                   />
-                  <Review/>
                 </GridListTile>
                 </div>
               ))}

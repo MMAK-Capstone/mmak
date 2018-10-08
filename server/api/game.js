@@ -42,4 +42,19 @@ router.get('/:gameId', async (req, res, next) => {
     }
   })
 
+  router.post('/:gameId/reviews', async (req, res, next) => {
+    let gameForReview = await Game.findById(req.params.gameId)
+    try {
+      if (!gameForReview) {
+        res.sendStatus(404)
+      } else {
+        let incomingReview = req.body
+        let postedReview = await Review.create(incomingReview)
+        res.json(postedReview)
+      }
+    } catch (error) {
+      next(error)
+    }
+  })
+
 module.exports = router;

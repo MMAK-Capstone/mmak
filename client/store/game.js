@@ -10,7 +10,7 @@ const GOT_REVIEWS = 'GOT_REVIEWS';
 const gotSingleGame = game => ({type: GOT_SINGLE_GAME, game});
 const gotAllGames = games => ({type: GOT_ALL_GAMES, games});
 const gotReviews = reviews => ({type: GOT_REVIEWS, reviews})
-const addedReview = review => ({ type: ADDED_REVIEW})
+const addedReview = review => ({ type: ADDED_REVIEW, review})
 
 //thunk
 export const getSingleGame = id => {
