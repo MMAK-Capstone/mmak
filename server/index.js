@@ -47,16 +47,16 @@ app.post('/lookup-user', async (request, response) => {
 	});
 });
 
-// async function createCollectionOnAWS() {
-// 	let params = {
-// 		CollectionId: IMAGE_COLLECTION
-// 	};
-// 	await rek.createCollection(params, function(err, data) {
-// 		if (err)
-// 			console.log(err, err.stack); // an error occurred
-// 		else console.log(data); // successful response
-// 	});
-// }
+async function createCollectionOnAWS() {
+	let params = {
+		CollectionId: IMAGE_COLLECTION
+	};
+	await rek.createCollection(params, function(err, data) {
+		if (err)
+			console.log(err, err.stack); // an error occurred
+		else console.log(data); // successful response
+	});
+}
 
 async function addImageToCollectionOnAWS(timestamp, image) {
 	var params = {
@@ -121,7 +121,7 @@ app.post('/list-images', async (request, response) => {
 
 app.post('/create-collection-of-user', async (request, response) => {
 	try {
-		// data = await createCollectionOnAWS();
+		data = await createCollectionOnAWS();
 		const allUsersPromise = await User.findAll({
 			attributes: [ 'id', 'username', 'imageUrl' ]
 		});
