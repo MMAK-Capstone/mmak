@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from '@material-ui/core/Avatar'; //not yet fetching images from collections
 import {Link, withRouter} from 'react-router-dom'
 import Review from './review';
 import {connect} from 'react-redux'
@@ -27,13 +27,6 @@ const styles = theme => ({
     }
   });
 
-let testUser = 
-  {
-    username: "Asya-Is-Awesome",
-    imageUrl: '/pictures/Asya.jpg'
-  };
-
-
 class Dashboard extends React.Component {
   constructor(props){
     super(props)
@@ -52,8 +45,8 @@ class Dashboard extends React.Component {
     const user = this.props.user
   return (
     <div>
-      <h2 align = "center" className="greeting">Welcome to Your Dashboard, {testUser.username}</h2> 
-      <div align="center"><Avatar src={testUser.imageUrl}/></div>
+      <h2 align = "center" className="greeting">Welcome to Your Dashboard, {user.username}</h2> 
+      {/* <div align="center"><Avatar src={user.imageUrl}/></div> */} {/*The image URL is not yet coming from the collection*/}
           <div className={classes.root}>
             <GridList align ="center" cellHeight={45} cols={1}spacing ={250} className={classes.gridList}>
               {games.map(game => (
