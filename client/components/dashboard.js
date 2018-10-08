@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
@@ -63,7 +63,7 @@ class Dashboard extends React.Component {
                   <img src={game.gif} alt={game.name} />
                 </a>
                   <GridListTileBar
-                    titlePosition="top" title={<Link to={`/game/:${game.id}`} className="link">{game.name}</Link>}
+                    titlePosition="top" title={<Link to={`/game/${game.id}`} className="link">{game.name}</Link>}
                   />
                   <Review/>
                 </GridListTile>
