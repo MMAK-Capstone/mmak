@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Game} = require('../db/models');
+const {User, Game, Review} = require('../db/models');
 
 router.get('/', async (req, res, next) => {
     try {
@@ -21,6 +21,22 @@ router.get('/:gameId', async (req, res, next) => {
         include: [{ all: true }]
       })
       res.json(singleGame)
+    } catch (error) {
+      next(error)
+    }
+  })
+
+
+  router.get('/:gameId/reviews', async (req, res, next) => {
+    try {
+      const gameId = Number(req.params.gameId)
+      const reviewsByGame = await Review.findAll({
+        where: {
+          gameId: gameId
+        },
+        include: [{model: User}]
+      })
+      res.json(reviewsByGame)
     } catch (error) {
       next(error)
     }
