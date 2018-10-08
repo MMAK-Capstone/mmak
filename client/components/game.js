@@ -1,16 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {NavLink, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import Review from './review';
 import {getSingleGame} from '../store/game';
 
 class GamePage extends React.Component {
-    constructor (){
-        super()
-    }
-
     componentDidMount(){
-        console.log(`here are the props in the game component`, this.props)
         this.props.getSingleGame(this.props.match.params.gameId)
     }
 

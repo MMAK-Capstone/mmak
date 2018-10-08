@@ -37,12 +37,16 @@ class Review extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
     const {rating} = this.state
-    console.log(`here are the props within handlesbumit of the review component`, this.props)
     this.props.postReview({rating, gameId: this.props.match.params.gameId, userId: this.props.user.id});
     this.props.history.push(`/game/${this.props.match.params.gameId}`)
   }
- 
+
+  componentDidMount(){
+    this.props.getSingleGame(this.props.match.params.gameId)
+  }
+
   render() {
+    console.log(`PROPS in REVIEW COMPONENT`, this.props)
     const { rating } = this.state;
     const {classes} = this.props;
     const reviews = this.props.reviews
@@ -61,6 +65,12 @@ class Review extends React.Component {
             Submit Rating
             </Button>
           </form>
+          <ul>
+            Previous Game Reviews
+            {reviews? reviews.map(review => (
+              <li key ={review.id}>{review.rating}</li>
+            )): null}
+          </ul>
         </div>
     ); 
   }
@@ -70,10 +80,10 @@ Review.propTypes = {
 };
 
 const mapStateToProps = state => {
-  console.log(`here is the state in the review component`, state)
   return {
     reviews: state.gameReducer.singleGame.reviews,
-    user: state.user
+    user: state.user,
+    singleGame: state.gameReducer.singleGame
   }
 }
 const mapDispatchToProps = dispatch => {
