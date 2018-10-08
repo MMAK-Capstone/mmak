@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Login, Signup, UserHome, Homepage, Dashboard, GamePage, Categories } from './components';
-import { me } from './store';
+import { Login, Signup, UserHome, Homepage, Dashboard, GamePage, FaceLogin, Categories } from './components';
+import { me, getAllGames } from './store';
 
 /**
  * COMPONENT
@@ -20,15 +20,15 @@ class Routes extends Component {
 			<Switch>
 				{/* Routes placed here are available to all visitors*/}
 				<Route exact path="/" component={Homepage} />
+        		<Route exact path="/categories/:categoryName" component={Categories}/>
+				<Route path="/facelogin" component={FaceLogin} />
 				<Route path="/login" component={Login} />
 				<Route path="/signup" component={Signup} />
-				<Route path="/dashboard" component={Dashboard} /> {/*TODO: This route must be moved to isLoggedIn*/}
-				<Route path="/game" component={GamePage} /> {/*TODO: This route must be moved to isLoggedIn*/}
-        <Route exact path="/categories/:categoryName" component={Categories}/>
 				{isLoggedIn && (
 					<Switch>
-						{/* Routes placed here are only available after logging in */}
 						<Route path="/home" component={UserHome} />
+						<Route path="/dashboard" component={Dashboard} />
+						<Route path="/game/:gameId" component={GamePage} />
 					</Switch>
 				)}
 				{/* Displays our Login component as a fallback */}
@@ -37,7 +37,6 @@ class Routes extends Component {
 		);
 	}
 }
-
 /**
  * CONTAINER
  */
@@ -51,8 +50,9 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
 	return {
-		loadInitialData() {
-			dispatch(me());
+		async loadInitialData() {
+			await dispatch(me());
+			await dispatch(getAllGames);
 		}
 	};
 };

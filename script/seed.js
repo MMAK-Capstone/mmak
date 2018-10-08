@@ -6,18 +6,7 @@ const {User, Game, Question} = require('../server/db/models')
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
-
-  // const users = await Promise.all([
-  //   User.create({email: 'cody@email.com', password: '123'}),
-  //   User.create({email: 'murphy@email.com', password: '123'})
-  // ])
   
-  const users = await Promise.all([
-    User.create({username: 'asya', password: '123', imageUrl:'pictures/Asya.jpg'}),
-    User.create({username: 'keyairra', password: '123', imageUrl:'pictures/Keyairra.jpg'}),
-    User.create({username: 'megha', password: '123', imageUrl:'pictures/Megha.jpg'}),
-    User.create({username: 'michelle', password: '123', imageUrl:'pictures/Michelle.jpg'}),
-  ])
 
   const games = await Promise.all([
     Game.create({name: "Math Masters", description: "Are the math facts and riddles true or false? Earn 100 points to win!", gif:"/gamePics/math-masters.gif", score: 0, gameUrl: "https://mmak-math-masters.firebaseapp.com/", category: "edu" }),

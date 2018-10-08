@@ -6,13 +6,15 @@ import Camera from 'react-camera';
 import { connect } from 'react-redux';
 import { signupthunk } from '../store';
 import Grid from '@material-ui/core/Grid';
-// import FormLabel from '@material-ui/core/FormLabel';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 import { Paper } from 'material-ui';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+
 const style = {
 	preview: {
-		position: 'relative'
+		position: 'fixed'
 	},
 	captureContainer: {
 		position: 'absolute',
@@ -26,22 +28,49 @@ const style = {
 		margin: 20
 	},
 	captureImage: {
-		width: '100px',
-		height: '100px'
+		width: '300px',
+		height: '300px'
 	},
 	control: {
 		padding: 20,
-		height: '50px'
+		height: '100px'
 	},
 	paper: {
 		height: 140,
 		width: 100
+	},
+	camera: {
+		height: '100px',
+		width: '30px'
 	}
 };
 
+const styles = (theme) => ({
+	root: {
+		width: '100%'
+	},
+	paper: {
+		padding: theme.spacing.unit * 2,
+		textAlign: 'center',
+		color: theme.palette.text.secondary,
+		height: '70vh'
+	},
+	cameraAndImage: {
+		height: '70vh'
+	},
+	camera: {
+		height: '10',
+		width: '5'
+	},
+	captureButton: {
+		height: '20px',
+		width: '70px'
+	}
+});
+
 class Signup extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			file: null,
 			username: '',
@@ -57,40 +86,36 @@ class Signup extends Component {
 
 		const formData = new FormData();
 		formData.append('file', this.state.file);
+		// axios.post('/create-collection-of-user')
 		axios
-			.post(`/test-upload`, formData, {
+			.post(`/upload-signup-image`, formData, {
 				headers: {
 					'Content-Type': 'multipart/form-data'
 				},
 				body: formData
 			})
 			.then((response) => {
-				// handle your response;
-				console.log('response from AWS', response.data);
-				console.log('filename from state', response);
-				this.setState({ fileName: response.data }); /// state is changin here for fileName
-				console.log('fileName from state', this.state.fileName);
+				this.setState({ fileName: response.data });
 				this.props
 					.submitUser({ ...this.state })
 					.then(() => {
-						this.props.history.push('/');
+						this.props.history.push('/dashboard');
 					})
 					.catch((error) => {
-						console.error(error);
+						console.error('Signup Error', error);
 					});
-				console.log('State is', this.state); // fileName couldnt find in state
+				// console.log('State is', this.state);
+			})
+			.catch((error) => {
+				console.error('Signup Error', error);
 			});
 	};
 	handleChange(evt) {
 		this.setState({ [evt.target.name]: evt.target.value });
 	}
-	comparePicture() {
-		const res = axios.get('/compare-images');
-	}
 	takePicture() {
 		this.camera.capture().then((data) => {
 			this.setState({ file: data });
-			// var uploadUrl = this.state.uploadUrl;
 			this.img.src = URL.createObjectURL(data);
 			this.img.onload = () => {
 				URL.revokeObjectURL(this.src);
@@ -106,7 +131,63 @@ class Signup extends Component {
 			uploadForm.append('image', photo);
 		});
 	}
+
 	render() {
+		// const { classes } = this.props;
+		// return (
+		// 	<div>
+		// 		<MuiThemeProvider>
+		// 			<Grid Container direction="column">
+		// 				<Grid container spacing={24}>
+		// 					<Grid item xs={12}>
+		// 						<Paper className={style.control}>
+		// 							<Typography align="center" variant="headline" color="primary">
+		// 								Create your Account
+		// 							</Typography>
+		// 						</Paper>
+		// 					</Grid>
+		// 				</Grid>
+		// 				<Grid container item spacing={8}>
+		// 					<Grid item sm={8}>
+		// 						<Paper>
+		// 							<Grid Container item direction="row-reverse">
+		// 								<Grid item sm={3}>
+		// 									<Paper className={style.camera}>xs1</Paper>
+		// 									{/* <Camera
+		// 									style={style.camera}
+		// 									ref={(cam) => {
+		// 										this.camera = cam;
+		// 									}}
+		// 								/> */}
+		// 								</Grid>
+		// 								<Grid item sm={3}>
+		// 									<Paper className={style.camera}>xs</Paper>
+		// 									{/* <img
+		// 									style={style.camera}
+		// 									ref={(img) => {
+		// 										this.img = img;
+		// 									}}
+		// 								/> */}
+		// 								</Grid>
+		// 							</Grid>
+		// 							<Grid container spacing={12} className={classes.captureButton}>
+		// 								<Grid item xs>
+		// 									{/* <Button type="button" variant="raised" color="secondary" onClick={this.takePicture}>
+		// 								Take Photo
+		// 							</Button> */}
+		// 									xs3
+		// 								</Grid>
+		// 							</Grid>
+		// 						</Paper>
+		// 					</Grid>
+		// 					<Grid item sm={4}>
+		// 						<Paper className={classes.paper}>xs</Paper>
+		// 					</Grid>
+		// 				</Grid>
+		// 			</Grid>
+		// 		</MuiThemeProvider>
+		// 	</div>
+		// );
 		return (
 			<div>
 				<MuiThemeProvider>
@@ -121,46 +202,88 @@ class Signup extends Component {
 							</Grid>
 						</Paper>
 					</Grid>
-					<div>
-						<form onSubmit={this.submitFile}>
-							<div style={style.container}>
-								<Camera
-									style={style.captureImage}
-									ref={(cam) => {
-										this.camera = cam;
-									}}
-								/>
-								<img
-									style={style.captureImage}
-									ref={(img) => {
-										this.img = img;
-									}}
-								/>
-								<br />
-								<TextField
-									floatingLabelText="Enter Username"
-									name="username"
-									onChange={this.handleChange}
-								/>
-								<br />
-								<TextField type="password" floatingLabelText="Enter Password" />
-								<Button type="submit" style={style.captureButton} variant="raised" color="secondary">
-									SignUp
-								</Button>
-								{this.props.error &&
-								this.props.error.response && <div> {this.props.error.response.data} </div>}
-								<Button type="button" variant="raised" color="secondary" onClick={this.takePicture}>
-									Take Photo
-								</Button>
-								{/* <Button type="submit" variant="raised" color="secondary">
-									Send
-								</Button> */}
-								<Button type="button" variant="raised" color="secondary" onClick={this.comparePicture}>
-									Compare
-								</Button>
-							</div>
-						</form>
-					</div>
+					<Grid Container alignItems="center" />
+					<form onSubmit={this.submitFile}>
+						<div style={style.container}>
+							<Grid item xs={12}>
+								<Paper className={style.control}>
+									<Grid container alignItems="center" justify="center" style={{ minHeight: '10vh' }}>
+										<Grid item>
+											<Grid item xs={12}>
+												<Paper className={style.control}>
+													<Grid
+														container
+														alignItems="center"
+														justify="center"
+														style={{ minHeight: '8vh' }}
+													>
+														<Grid item>
+															<Camera
+																style={style.captureImage}
+																ref={(cam) => {
+																	this.camera = cam;
+																}}
+															/>
+															<img
+																style={style.captureImage}
+																ref={(img) => {
+																	this.img = img;
+																}}
+															/>
+															<br />
+															<Button
+																type="button"
+																variant="raised"
+																color="secondary"
+																onClick={this.takePicture}
+															>
+																Take Photo
+															</Button>
+														</Grid>
+													</Grid>
+												</Paper>
+											</Grid>
+											<Grid item xs={12}>
+												<Paper className={style.control}>
+													<Grid
+														container
+														alignItems="center"
+														justify="center"
+														style={{ minHeight: '10vh' }}
+													>
+														<Grid item>
+															<TextField
+																floatingLabelText="Enter User Name *"
+																name="username"
+																onChange={this.handleChange}
+															/>
+															<br />
+															<TextField
+																name="password"
+																type="password"
+																floatingLabelText="Enter Password *"
+																onChange={this.handleChange}
+															/>
+															<Button
+																type="submit"
+																style={style.captureButton}
+																variant="raised"
+																color="secondary"
+															>
+																SignUp
+															</Button>
+														</Grid>
+													</Grid>
+												</Paper>
+											</Grid>
+										</Grid>
+									</Grid>
+								</Paper>
+							</Grid>
+							{this.props.error &&
+							this.props.error.response && <div> {this.props.error.response.data} </div>}
+						</div>
+					</form>
 				</MuiThemeProvider>
 			</div>
 		);
@@ -176,5 +299,8 @@ const mapDispatch = (dispatch) => {
 		submitUser: (user) => dispatch(signupthunk(user))
 	};
 };
-
+// Signup.propTypes = {
+// 	classes: PropTypes.object.isRequired
+// };
+// const withStyleSignUp = withStyles(styles)(Signup);
 export default connect(mapStateToProps, mapDispatch)(Signup);

@@ -1,23 +1,22 @@
+const { User } = require('./db/models');
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const compression = require('compression');
 const session = require('express-session');
 const passport = require('passport');
-const bodyParser = require('body-parser');
-
 const AWS = require('aws-sdk');
 const fs = require('fs');
-const fileType = require('file-type');
 const bluebird = require('bluebird');
 const multiparty = require('multiparty');
-const { BUCKET_ID, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../secrets');
+const { IMAGE_COLLECTION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../secrets');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const db = require('./db');
 const sessionStore = new SequelizeStore({ db });
 const PORT = process.env.PORT || 8080;
 const app = express();
 const socketio = require('socket.io');
+
 module.exports = app;
 
 AWS.config.update({
@@ -31,66 +30,172 @@ AWS.config.setPromisesDependency(bluebird);
 const s3 = new AWS.S3();
 const rek = new AWS.Rekognition();
 
-const uploadFile = (buffer, name, type) => {
-	const params = {
-		ACL: 'public-read',
-		Body: buffer,
-		Bucket: BUCKET_ID,
-		ContentType: type.mime,
-		Key: `${name}.${type.ext}`
-	};
-	var bucket = new AWS.S3({ params: { Bucket: BUCKET_ID } });
-	return bucket.putObject(params).promise();
-	//return s3.upload(params).promise();
-};
-
-app.get('/compare-images', (request, response) => {
-	try {
-		const params = {
-			SimilarityThreshold: 90,
-			SourceImage: {
-				S3Object: {
-					Bucket: BUCKET_ID,
-					Name: '1538283498846.jpg'
-				}
-			},
-			TargetImage: {
-				S3Object: {
-					Bucket: BUCKET_ID,
-					Name: '1538283302621.jpg'
-				}
-			}
-		};
-		// var bucket = new AWS.S3({ params: { Bucket: BUCKET_ID } });
-		rek.compareFaces(params, function(err, data) {
-			console.log('inside compare', data);
-			if (err) {
-				console.log(err);
-			} else {
-				// an error occurred
-				console.log('from compare face method', data);
-			}
-		});
-	} catch (err) {
-		return response.status(400).send(err);
-	}
-});
 //Post route to upload file
-app.post('/test-upload', (request, response) => {
+app.post('/lookup-user', async (request, response) => {
 	const form = new multiparty.Form();
 	form.parse(request, async (error, fields, files) => {
 		if (error) throw new Error(error);
 		try {
 			const path1 = files.file[0].path;
 			const buffer = fs.readFileSync(path1);
-			const type = fileType(buffer);
-			const timestamp = Date.now().toString();
-			const fileName = `${timestamp}`;
-			this.filetoDb = fileName.toString() + '.jpg';
-			response.json(fileName);
-			const data = await uploadFile(buffer, fileName, type);
 
-			return response.status(200).send(response);
+			await lookUpImage(buffer, response);
+		} catch (err) {
+			console.log('Got Error', err);
+			return response.status(400).json(err);
+		}
+	});
+});
+
+async function createCollectionOnAWS() {
+	let params = {
+		CollectionId: IMAGE_COLLECTION
+	};
+	await rek.createCollection(params, function(err, data) {
+		if (err)
+			console.log(err, err.stack); // an error occurred
+		else console.log(data); // successful response
+	});
+}
+
+async function addImageToCollectionOnAWS(timestamp, image) {
+	var params = {
+		CollectionId: IMAGE_COLLECTION,
+		ExternalImageId: timestamp,
+		Image: { Bytes: image }
+	};
+	await rek.indexFaces(params, function(err, data) {
+		if (err)
+			console.log(err, err.stack); // an error occurred
+		else console.log(data); // successful response
+	});
+}
+
+async function listImagesFromCollectionAWS() {
+	var params = {
+		CollectionId: IMAGE_COLLECTION
+	};
+	console.log('listImagesFromCollectionAWS', params);
+	await rek.listFaces(params, function(err, data) {
+		if (err)
+			console.log('listImagesFromCollectionAWS', err, err.stack); // an error occurred
+		else console.log('listImagesFromCollectionAWS', data); // successful response
+	});
+}
+
+async function deleteUnwantedCollectionAWS(allUsersImageUrls) {
+	console.log('Registered User Images', allUsersImageUrls);
+	var params = {
+		CollectionId: IMAGE_COLLECTION
+	};
+	console.log('deleteUnwantedCollectionAWS', params);
+	await rek.listFaces(params, function(err, data) {
+		if (err) console.log('deleteUnwantedCollectionAWS', err, err.stack);
+		else {
+			console.log('deleteUnwantedCollectionAWS', data);
+			var faceIds = data.Faces
+				.filter((item) => !allUsersImageUrls.includes(item.ExternalImageId))
+				.map((item) => item.FaceId);
+
+			params.FaceIds = faceIds;
+			if (faceIds.length < 1) {
+				console.log('No Unwanted images to delete', faceIds);
+				return;
+			}
+			rek.deleteFaces(params, function(err, data) {
+				if (err)
+					console.log('deleteUnwantedCollectionAWS', err, err.stack); // an error occurred
+				else console.log('deleteUnwantedCollectionAWS', data); // successful response
+			});
+		} // successful response
+	});
+}
+
+app.post('/list-images', async (request, response) => {
+	try {
+		var data = await listImagesFromCollectionAWS();
+	} catch (err) {
+		return response.status(400).send(err);
+	}
+});
+
+app.post('/create-collection-of-user', async (request, response) => {
+	try {
+		data = await createCollectionOnAWS();
+		const allUsersPromise = await User.findAll({
+			attributes: [ 'id', 'username', 'imageUrl' ]
+		});
+
+		let allUsersData = allUsersPromise;
+		let allUsersImageUrls = allUsersData
+			.filter((user) => {
+				let userData = user.dataValues;
+				return userData.imageUrl !== null && userData.imageUrl !== '';
+			})
+			.map((user) => user.dataValues.imageUrl);
+		console.log('Registered User Images', allUsersImageUrls);
+		await deleteUnwantedCollectionAWS(allUsersImageUrls);
+	} catch (err) {
+		return response.status(400).send(err);
+	}
+});
+
+async function lookUpImage(image, response) {
+	var params = {
+		CollectionId: IMAGE_COLLECTION,
+		FaceMatchThreshold: 80,
+		Image: {
+			Bytes: image
+		},
+		MaxFaces: 1
+	};
+	var resultdata = await rek
+		.searchFacesByImage(params, (err, data) => {
+			if (err) {
+				console.error('lookUpImage responding', err.message);
+			}
+		})
+		.promise();
+	console.log('lookUpImageSearchFaceResult', resultdata);
+	if (resultdata.FaceMatches.length < 1) {
+		if (response !== null) {
+			console.log('lookUpImage responding', 'Face could not recognise');
+			throw new Error('Face could not recognise');
+		} else {
+			return null;
+		}
+	}
+	const userDetails = await User.findOne({
+		where: {
+			imageUrl: resultdata.FaceMatches[0].Face.ExternalImageId
+		}
+	});
+	if (response !== null) {
+		console.log('lookUpImage responding', resultdata.FaceMatches[0].Face);
+		if (userDetails !== null) return response.send(userDetails);
+		else throw new Error('User does not exist for Face ID.');
+	} else {
+		return userDetails;
+	}
+}
+
+//Post route to upload file
+app.post('/upload-signup-image', async (request, response) => {
+	const form = new multiparty.Form();
+	form.parse(request, async (error, fields, files) => {
+		if (error) throw new Error(error.message);
+		try {
+			const path1 = files.file[0].path;
+			const buffer = fs.readFileSync(path1);
+			const timestamp = Date.now().toString();
+			var userDetails = await lookUpImage(buffer, null);
+			if (userDetails !== null && userDetails.dataValues !== null) {
+				console.error('Face already exist', userDetails.dataValues);
+				throw new Error('Face already exist ' + userDetails.dataValues);
+			} else {
+				var data = await addImageToCollectionOnAWS(timestamp, buffer);
+				return response.json(timestamp);
+			}
 		} catch (err) {
 			return response.status(400).send(err);
 		}
@@ -132,7 +237,6 @@ const createApp = () => {
 	// body parsing middleware
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
-
 	// compression middleware
 	app.use(compression());
 
