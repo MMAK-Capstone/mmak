@@ -86,6 +86,7 @@ class Signup extends Component {
 
 		const formData = new FormData();
 		formData.append('file', this.state.file);
+		// axios.post('/create-collection-of-user')
 		axios
 			.post(`/upload-signup-image`, formData, {
 				headers: {
