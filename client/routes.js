@@ -25,7 +25,11 @@ class Routes extends Component {
 				<Route path="/signup" component={Signup} />
 				<Route path="/dashboard" component={Dashboard} /> {/*TODO: This route must be moved to isLoggedIn*/}
 				<Route path="/game" component={GamePage} /> {/*TODO: This route must be moved to isLoggedIn*/}
-				<Route path="/home" component={UserHome} />
+				{isLoggedIn && (
+					<Switch>
+						<Route path="/home" component={UserHome} />
+					</Switch>
+				)}
 				{/* Displays our Login component as a fallback */}
 				<Route component={Login} />
 			</Switch>

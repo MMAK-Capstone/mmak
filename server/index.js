@@ -171,7 +171,7 @@ async function lookUpImage(image, response) {
 		}
 	});
 	if (response !== null) {
-		console.log('lookUpImage responding', 'Handle user');
+		console.log('lookUpImage responding', resultdata.FaceMatches[0].Face);
 		if (userDetails !== null) return response.send(userDetails);
 		else throw new Error('User does not exist for Face ID.');
 	} else {

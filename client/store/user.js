@@ -1,12 +1,12 @@
 import axios from 'axios';
 import history from '../history';
-
 /**
  * ACTION TYPES
  */
 const GET_USER = 'GET_USER';
 const REMOVE_USER = 'REMOVE_USER';
 const SET_USER = 'SET_USER';
+const GET_LOGIN = 'GET_LOGIN';
 /**
  * INITIAL STATE
  */
@@ -18,6 +18,7 @@ const defaultUser = {};
 const getUser = (user) => ({ type: GET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
 const setUser = (user) => ({ type: SET_USER, user });
+
 /**
  * THUNK CREATORS
  */
@@ -29,16 +30,19 @@ export const me = () => async (dispatch) => {
 		console.error(err);
 	}
 };
+
 export const setUserThunk = (user) => (dispatch) => {
 	console.log('setting user thunk', user);
+	dispatch(getUser(user));
 	history.push('/home');
-	dispatch(setUser(user));
 };
-export const auth = (email, password, method) => async (dispatch) => {
+
+export const auth = (user) => async (dispatch) => {
 	let res;
 	try {
-		res = await axios.post(`/auth/${method}`, { email, password });
+		res = await axios.post(`/auth/login`, user);
 	} catch (authError) {
+		console.error(authError);
 		return dispatch(getUser({ error: authError }));
 	}
 
@@ -78,6 +82,10 @@ export default function(state = defaultUser, action) {
 		case REMOVE_USER:
 			return defaultUser;
 		case SET_USER:
+			return {
+				state: action.user
+			};
+		case GET_LOGIN:
 			return {
 				state: action.user
 			};
