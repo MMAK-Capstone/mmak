@@ -36,6 +36,7 @@ export const getReviews = gameId => {
   }
 
 export const addNewReview = review => {
+    console.log(`thunk in addNewReview`,review);
     return async dispatch => {
       const response = await axios.post(
         `/api/game/${review.gameId}/reviews`,

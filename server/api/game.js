@@ -48,6 +48,7 @@ router.get('/:gameId', async (req, res, next) => {
       if (!gameForReview) {
         res.sendStatus(404)
       } else {
+        console.log(`incoming review in GAME ROUTE`, req.body)
         let incomingReview = req.body
         let postedReview = await Review.create(incomingReview)
         res.json(postedReview)

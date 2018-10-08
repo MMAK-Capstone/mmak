@@ -38,7 +38,7 @@ class Review extends React.Component {
     event.preventDefault()
     const {rating} = this.state
     console.log(`here are the props within handlesbumit of the review component`, this.props)
-    this.props.postReview(rating);
+    this.props.postReview({rating, gameId: this.props.match.params.gameId, userId: this.props.user.id});
     this.props.history.push(`/game/${this.props.match.params.gameId}`)
   }
  
@@ -49,7 +49,7 @@ class Review extends React.Component {
     return (                
         <div>
           <h2>Game Rating: {rating}</h2>
-          <form onSubmit={this.handleSubmit} target="_self" method="GET">
+          <form onSubmit={this.handleSubmit} target="_self" method="POST">
             <StarRatingComponent 
               name="reviewRating" 
               starCount={10}
