@@ -29,7 +29,11 @@ export const me = () => async (dispatch) => {
 		console.error(err);
 	}
 };
-
+export const setUserThunk = (user) => (dispatch) => {
+	console.log('setting user thunk', user);
+	history.push('/home');
+	dispatch(setUser(user));
+};
 export const auth = (email, password, method) => async (dispatch) => {
 	let res;
 	try {

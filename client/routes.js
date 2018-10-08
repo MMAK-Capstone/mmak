@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Login, Signup, UserHome, Homepage, Dashboard, GamePage, Categories } from './components';
+import { Login, Signup, UserHome, Homepage, Dashboard, GamePage, FaceLogin } from './components';
 import { me } from './store';
 
 /**
@@ -20,24 +20,18 @@ class Routes extends Component {
 			<Switch>
 				{/* Routes placed here are available to all visitors*/}
 				<Route exact path="/" component={Homepage} />
+				<Route path="/facelogin" component={FaceLogin} />
 				<Route path="/login" component={Login} />
 				<Route path="/signup" component={Signup} />
 				<Route path="/dashboard" component={Dashboard} /> {/*TODO: This route must be moved to isLoggedIn*/}
 				<Route path="/game" component={GamePage} /> {/*TODO: This route must be moved to isLoggedIn*/}
-        <Route exact path="/categories/:categoryName" component={Categories}/>
-				{isLoggedIn && (
-					<Switch>
-						{/* Routes placed here are only available after logging in */}
-						<Route path="/home" component={UserHome} />
-					</Switch>
-				)}
+				<Route path="/home" component={UserHome} />
 				{/* Displays our Login component as a fallback */}
 				<Route component={Login} />
 			</Switch>
 		);
 	}
 }
-
 /**
  * CONTAINER
  */
