@@ -12,11 +12,7 @@ const gotAllGames = games => ({type: GOT_ALL_GAMES, games});
 export const getSingleGame = id => {
     return async dispatch => {
         const {data} = await axios.get(`/api/game/${id}`);
-        if (data.length) {
-            dispatch(gotSingleGame(data[0]))///TODO: return here if error
-        }else {
-            dispatch(console.error());
-        } 
+        dispatch(gotSingleGame(data[0]))///TODO: return here if error
     }
 }
 

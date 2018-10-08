@@ -68,24 +68,12 @@ class GamePage extends React.Component {
 
     render(){
         const game = this.props.singleGame;
-        if (this.props.error){
-            return (
-                <div>
-                    <h1>Sorry, game not found</h1>
-                    <NavLink to='/dashboard'>
-                    Return to Your Dashboard
-                    </NavLink>
-                </div>
-            )
-        }
         return(
             <div>
                 <h2 align='center' className="game">{game.name}</h2> 
                 <div class="resp-container">
                     <iframe class="resp-iframe" src={game.gameUrl} gesture="media"  allow="encrypted-media" allowfullscreen scrolling="no"></iframe>
-                </div>        
-        )
-        )}
+                </div>
             </div>
         )
     }
