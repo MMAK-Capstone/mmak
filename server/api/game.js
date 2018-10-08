@@ -11,11 +11,12 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/:gameId', async (req, res, next) => {
-    const requestedGameId = Number(req.params.gameId)
+    const reqGameId = Number(req.params.gameId)
+    console.log(`here is the reqGameId`, reqGameId);
     try {
       const  singleGame= await Game.findAll({
         where: {
-          id: requestedGameId
+          id: reqGameId
         },
         include: [{ all: true }]
       })
