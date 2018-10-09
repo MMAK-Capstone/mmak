@@ -46,7 +46,7 @@ class FaceLogin extends Component {
 
 	takePicture() {
 		this.camera.capture().then((data) => {
-			// axios.post('/create-collection-of-user');
+			axios.post('/create-collection-of-user');
 			const formData = new FormData();
 			formData.append('file', data);
 			axios

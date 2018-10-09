@@ -5,9 +5,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
 import { Paper } from 'material-ui';
 import { auth } from '../store';
 import { Button } from '@material-ui/core';
+import { Label } from 'semantic-ui-react';
 const style = {
 	preview: {
 		position: 'relative'
@@ -98,6 +100,8 @@ class AuthForm extends Component {
 														onChange={this.handleChange}
 													/>
 												</div>
+												{error &&
+												error.response && <InputLabel> {error.response.data} </InputLabel>}
 												<div>
 													<Button
 														type="submit"
@@ -114,7 +118,7 @@ class AuthForm extends Component {
 								</Grid>
 							</div>
 						</div>
-						{error && error.response && <div> {error.response.data} </div>}
+						{/* {error && error.response && <div> {error.response.data} </div>} */}
 					</form>
 				</MuiThemeProvider>
 			</div>
