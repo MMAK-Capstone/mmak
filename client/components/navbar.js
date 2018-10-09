@@ -25,7 +25,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 							Your Dashboard
 						</Button>
 						<a href="#" onClick={handleClick}>
+							<Button color="secondary" component={Link} to="/dashboard">
 							Logout
+							</Button>
 						</a>
 					</div>
 				) : (

@@ -12,6 +12,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar/GridListTileBar'
 import IconButton from '@material-ui/core/IconButton/IconButton'
 import StarBorderIcon from '@material-ui/core/SvgIcon/SvgIcon'
 import {withStyles} from '@material-ui/core'
+import Tooltip from '@material-ui/core/Tooltip/Tooltip'
 
 const styles = theme => ({
   root: {
@@ -97,8 +98,10 @@ class Categories extends Component {
       return <div>
         <Paper>
           <Tabs indicatorColor="secondary" centered>
+            <Tab className="flash" label="You should login for playing"/>
             <Tab label="Education Game" component={Link} to="/categories/edu"/>
             <Tab label="Fun Game" component={Link} to="/categories/fun"/>
+            <Tab className="flash" label="You should login for playing"/>
           </Tabs>
         </Paper>
         <h2>No Games Yet</h2>
@@ -108,9 +111,10 @@ class Categories extends Component {
               {we.map((tile) => (
                 <GridListTile key={tile.img} style={{flexGrow: 2}}>
                   <Avatar src={tile.img}/>
-                  <GridListTileBar title={tile.title} subtitle={tile.description} actionIcon={
+                  <GridListTileBar title={tile.title} actionIcon={
                     <a href={tile.linkedin}><IconButton><StarBorderIcon/></IconButton></a>
-                  }/></GridListTile>
+                  }/>
+                </GridListTile>
               ))}
             </GridList>
           </div>
@@ -121,8 +125,10 @@ class Categories extends Component {
         <div>
           <Paper>
             <Tabs indicatorColor="secondary" centered>
+              <Tab className="flash" label="You should login for playing"/>
               <Tab label="Education Game" component={Link} to="/categories/edu"/>
               <Tab label="Fun Game" component={Link} to="/categories/fun"/>
+              <Tab className="flash" label="You should login for playing"/>
             </Tabs>
           </Paper>
           <div><img src={typeCategory[0].gif} width="400" height="500"/></div>
@@ -133,9 +139,10 @@ class Categories extends Component {
                 {we.map((tile) => (
                   <GridListTile key={tile.img} style={{flexGrow: 2}}>
                     <Avatar src={tile.img}/>
-                    <GridListTileBar title={tile.title} subtitle={tile.description} actionIcon={
+                    <GridListTileBar title={tile.title} actionIcon={
                       <a href={tile.linkedin}><IconButton><StarBorderIcon/></IconButton></a>
-                    }/></GridListTile>
+                    }/>
+                  </GridListTile>
                 ))}
               </GridList>
             </div>

@@ -15,6 +15,7 @@ import IconButton from '@material-ui/core/IconButton'
 import StarBorderIcon from '@material-ui/icons/StarBorder'
 import Avatar from '@material-ui/core/Avatar'
 import Paper from '@material-ui/core/Paper'
+import Tooltip from '@material-ui/core/Tooltip';
 
 const styles = theme => ({
   root: {
@@ -82,8 +83,10 @@ class Homepage extends Component {
       <div>
         <Paper>
           <Tabs indicatorColor="secondary" centered>
+            <Tab className="flash" label="You should login for playing"/>
             <Tab label="Education Game" component={Link} to="/categories/edu"/>
             <Tab label="Fun Game" component={Link} to="/categories/fun"/>
+            <Tab className="flash" label="You should login for playing"/>
           </Tabs>
         </Paper>
         <div class="footer">
@@ -93,7 +96,7 @@ class Homepage extends Component {
               <GridListTile key={tile.img} style={{flexGrow: 2}}>
                 <Avatar src={tile.img}/>
                 <GridListTileBar title={tile.title} subtitle={tile.description} actionIcon={
-                  <a href={tile.linkedin}><IconButton><StarBorderIcon/></IconButton></a>
+                  <a href={tile.linkedin}><Tooltip title={tile.description}><IconButton><StarBorderIcon/></IconButton></Tooltip></a>
                 }/>
               </GridListTile>
             ))}

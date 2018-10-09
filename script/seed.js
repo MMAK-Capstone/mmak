@@ -7,16 +7,32 @@ async function seed() {
 	await db.sync({ force: true });
 	console.log('db synced!');
 
-	// const users = await Promise.all([
-	//   User.create({email: 'cody@email.com', password: '123'}),
-	//   User.create({email: 'murphy@email.com', password: '123'})
-	// ])
-
-	const users = await Promise.all([
-		User.create({ username: 'asya', password: '123', imageUrl: 'pictures/Asya.jpg' }),
-		User.create({ username: 'keyairra', password: '123', imageUrl: 'pictures/Keyairra.jpg' }),
-		User.create({ username: 'megha', password: '123', imageUrl: 'pictures/Megha.jpg' }),
-		User.create({ username: 'michelle', password: '123', imageUrl: 'pictures/Michelle.jpg' })
+	const games = await Promise.all([
+		Game.create({
+			name: 'Math Masters',
+			description: 'Are the math facts and riddles true or false? Earn 100 points to win!',
+			gif: '/gamePics/math-masters.gif',
+			score: 0,
+			gameUrl: 'https://mmak-math-masters.firebaseapp.com/',
+			category: 'edu'
+		}),
+		Game.create({
+			name: 'Island Runner',
+			description:
+				'How long can you run through the island while dodging vines and branches? Play this game to find out!',
+			gif: '/gamePics/island-runner.gif',
+			score: 0,
+			gameUrl: 'https://island-runner-9bd31.firebaseapp.com/',
+			category: 'fun'
+		}),
+		Game.create({
+			name: 'Science Fighter',
+			description: 'Help the scientist defeat the environmental injustices! Complete level 3 in order to win!',
+			gif: '/pictures/mathGame.png',
+			score: 0,
+			gameUrl: 'https://test-game-46120.firebaseapp.com/',
+			category: 'edu'
+		})
 	]);
 
 	const games = await Promise.all([
