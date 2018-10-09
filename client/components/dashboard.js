@@ -44,7 +44,7 @@ class Dashboard extends React.Component {
     const user = this.props.user
   return (
     <div>
-      <h2 align = "center" className="greeting">Welcome to Your Dashboard, {user.username}</h2> 
+      <h2 align = "center" className="greeting">Welcome to Game Room, {user.username}</h2> 
       {/* <div align="center"><Avatar src={user.imageUrl}/></div> */} {/*The image URL is not yet coming from the collection*/}
           <div className={classes.root}>
             <GridList align ="center" cellHeight={45} cols={1}spacing ={250} className={classes.gridList}>

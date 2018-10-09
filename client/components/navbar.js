@@ -22,7 +22,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 							HomePage
 						</Button>
 						<Button color="inherit" component={Link} to="/dashboard">
-							Your Dashboard
+							Your Game Room
 						</Button>
 						<a href="#" onClick={handleClick}>
 							<Button color="secondary" component={Link} to="/dashboard">
@@ -43,7 +43,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 							Sign Up
 						</Button>
 						<Button color="inherit" component={Link} to="/dashboard">
-							Your Dashboard
+							Your Game Room
 						</Button>{' '}
 						{/*TODO: Once Login&SignUp are hooked up, remove this button, so that it only appears when signed in*/}
 					</div>
