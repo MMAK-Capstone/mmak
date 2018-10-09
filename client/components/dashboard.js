@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import Avatar from '@material-ui/core/Avatar'; //not yet fetching images from collections
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getAllGames} from '../store/game';
@@ -18,7 +17,7 @@ const styles = theme => ({
       backgroundColor: theme.palette.background.paper,
       ...theme.mixins.gutters(),
       paddingTop: theme.spacing.unit * 10,
-      paddingBottom: theme.spacing.unit * 50,//if we add more colums, increase the spacing
+      paddingBottom: theme.spacing.unit * 50,//Increase the spacing in order to add more columns
     },
     gridList: {
       width: 2000,
@@ -45,7 +44,6 @@ class Dashboard extends React.Component {
   return (
     <div>
       <h2 align = "center" className="greeting">Welcome to Game Room, {user.username}</h2> 
-      {/* <div align="center"><Avatar src={user.imageUrl}/></div> */} {/*The image URL is not yet coming from the collection*/}
           <div className={classes.root}>
             <GridList align ="center" cellHeight={45} cols={1}spacing ={250} className={classes.gridList}>
               {games.map(game => (

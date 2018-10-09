@@ -35,7 +35,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 						<Button color="inherit" component={Link} to="/">
 							HomePage
 						</Button>
-						{/*TODO: Once Login&SignUp are hooked up, then remove this button, becasue it will only appear when a user is signed in*/}
 						<Button color="inherit" component={Link} to="/facelogin">
 							Login
 						</Button>
@@ -45,7 +44,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 						<Button color="inherit" component={Link} to="/dashboard">
 							Your Game Room
 						</Button>{' '}
-						{/*TODO: Once Login&SignUp are hooked up, remove this button, so that it only appears when signed in*/}
 					</div>
 				)}
 			</Toolbar>

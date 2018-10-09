@@ -34,7 +34,6 @@ export const me = () => async (dispatch) => {
 export const setUserThunk = (user) => (dispatch) => {
 	console.log('setting user thunk', user);
 	dispatch(getUser(user));
-	//history.push('/home');
 	history.push('/dashboard');
 };
 

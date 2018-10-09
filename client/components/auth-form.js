@@ -52,7 +52,6 @@ class AuthForm extends Component {
 	handleSubmit(evt) {
 		evt.preventDefault();
 		this.props.submitUser({ ...this.state }).then(() => {
-			//this.props.history.push('/home');
 			this.props.history.push('/dashboard');
 		});
 	}
