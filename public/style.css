@@ -1,121 +1,125 @@
 body {
-  font-family: sans-serif;
+	font-family: sans-serif;
 }
 
 a {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 label {
-  display: block;
+	display: block;
 }
 
 nav a {
-  display: inline-block;
-  margin: 1em;
+	display: inline-block;
+	margin: 1em;
 }
 
 form div {
-  margin: 1em;
-  display: inline-block;
+	margin: 1em;
+	display: inline-block;
+	vertical-align: top;
 }
 
 .resp-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 30px;
-  height: 0;
-  overflow: hidden;
-
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
 }
 
 .resp-iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
 }
 
 html {
-  background: url(dashboard/computer-game.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
- }
+	background: url(dashboard/computer-game.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
 
- .link {
-  color: #FFF;
+.link {
+	color: #fff;
 }
 
 .link:hover {
-   color: #00F
+	color: #00f;
 }
 
 .greeting {
-  color: #FFF;
-  background: lightskyblue
+	color: #fff;
+	background: lightskyblue;
 }
 
 .game {
-  color: #FFF;
-  background: lightskyblue
+	color: #fff;
+	background: lightskyblue;
 }
 
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: floralwhite;
-  color: white;
-  text-align: center;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: floralwhite;
+	color: white;
+	text-align: center;
 }
 
 .inline-block-child {
-  display: inline-block;
+	display: inline-block;
 }
 
 .b {
-  position: fixed;
-  right: 5%;
-  top: 20%;
-  width: 20%;
-  height: 50%;
-  border: transparent;
-  align: center;
-  font-size: 250%;
-  font-palette: dark;
-  font-style: italic;
-  font-weight: 600;
-  text-align: center;
-  text-shadow: 2px 2px darkblue;
-  color: floralwhite;
+	position: fixed;
+	right: 5%;
+	top: 20%;
+	width: 20%;
+	height: 50%;
+	border: transparent;
+	align: center;
+	font-size: 250%;
+	font-palette: dark;
+	font-style: italic;
+	font-weight: 600;
+	text-align: center;
+	text-shadow: 2px 2px darkblue;
+	color: floralwhite;
 }
 
 /*.b {*/
-  /*position: fixed;*/
-  /*top:200px;*/
-  /*right: 50px;*/
-  /*align: center;*/
-  /*font-size: large;*/
-  /*font-palette: dark;*/
-  /*font-style: italic;*/
-  /*font-weight: 600;*/
+/*position: fixed;*/
+/*top:200px;*/
+/*right: 50px;*/
+/*align: center;*/
+/*font-size: large;*/
+/*font-palette: dark;*/
+/*font-style: italic;*/
+/*font-weight: 600;*/
 /*}*/
 
 .flash {
-  animation-name: flash;
-  animation-duration: 0.2s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  animation-play-state: running;
+	animation-name: flash;
+	animation-duration: 0.2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-play-state: running;
 }
 
 @keyframes flash {
-  from {color: red;}
-  to {color: black;}
+	from {
+		color: red;
+	}
+	to {
+		color: black;
+	}
 }

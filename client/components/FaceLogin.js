@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Button from '@material-ui/core/Button';
-// import TextField from 'material-ui/TextField';
 import Camera from 'react-camera';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';

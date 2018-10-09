@@ -9,7 +9,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { Paper } from 'material-ui';
 import { auth } from '../store';
 import { Button } from '@material-ui/core';
-import { Label } from 'semantic-ui-react';
 const style = {
 	preview: {
 		position: 'relative'
