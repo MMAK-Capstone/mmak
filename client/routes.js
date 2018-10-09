@@ -26,7 +26,6 @@ class Routes extends Component {
 				<Route path="/signup" component={Signup} />
 				{isLoggedIn && (
 					<Switch>
-						<Route path="/home" component={UserHome} />
 						<Route path="/dashboard" component={Dashboard} />
 						<Route path="/game/:gameId" component={GamePage} />
 					</Switch>
