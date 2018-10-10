@@ -8,14 +8,14 @@ async function seed() {
 	console.log('db synced!');
 
 	const games = await Promise.all([
-		Game.create({
-			name: 'Math Masters',
-			description: 'Are the math facts and riddles true or false? Earn 100 points to win!',
-			gif: '/gamePics/math-masters.gif',
-			score: 0,
-			gameUrl: 'https://mmak-math-masters.firebaseapp.com/',
-			category: 'edu'
-		}),
+    Game.create({
+      name: 'Science Fighter',
+      description: 'Help the scientist defeat the environmental injustices! Complete level 3 in order to win!',
+      gif: '/pictures/mathGame.png',
+      score: 0,
+      gameUrl: 'https://test-game-46120.firebaseapp.com/',
+      category: 'edu'
+    }),
 		Game.create({
 			name: 'Island Runner',
 			description:
@@ -25,14 +25,14 @@ async function seed() {
 			gameUrl: 'https://island-runner-9bd31.firebaseapp.com/',
 			category: 'fun'
 		}),
-		Game.create({
-			name: 'Science Fighter',
-			description: 'Help the scientist defeat the environmental injustices! Complete level 3 in order to win!',
-			gif: '/pictures/mathGame.png',
-			score: 0,
-			gameUrl: 'https://test-game-46120.firebaseapp.com/',
-			category: 'edu'
-		})
+    Game.create({
+      name: 'Math Masters',
+      description: 'Are the math facts and riddles true or false? Earn 100 points to win!',
+      gif: '/gamePics/math-masters.gif',
+      score: 0,
+      gameUrl: 'https://mmak-math-masters.firebaseapp.com/',
+      category: 'edu'
+    }),
 	]);
 	console.log(`seeded ${games.length} games`);
 	console.log(`seeded successfully`);

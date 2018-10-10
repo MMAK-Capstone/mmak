@@ -1,11 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchCategory} from '../store/categories'
-import {Link, withRouter} from 'react-router-dom'
-import Tabs from '@material-ui/core/Tabs/Tabs'
-import Tab from '@material-ui/core/Tab/Tab'
-import Paper from '@material-ui/core/Paper/Paper'
-import {withStyles} from '@material-ui/core'
+import {withRouter} from 'react-router-dom'
 import FooterWithUs from './footerWithUs';
 import Filters from './filters';
 
@@ -43,17 +39,36 @@ class Categories extends Component {
         <FooterWithUs/>
       </div>
     } else {
-      return (
-        <div>
-          <Filters/>
-          <div><img src={typeCategory[0].gif} width="400" height="500"/></div>
-          <div className="b">{typeCategory[0].description}</div>
-          <FooterWithUs/>
-        </div>
-      )
+      if (typeCategory.length === 1){
+        return (
+          <div>
+            <Filters/>
+              <div><img src={typeCategory[0].gif} width="400" height="500"/>
+                <div class="aFun">{typeCategory[0].description}</div>
+              </div>
+            <FooterWithUs/>
+          </div>
+        )
+      } else {
+        return (
+          <div>
+            <Filters/>
+              <div className="imgClassFirst"><img src={typeCategory[0].gif} width="400" height="500"/>
+                <div className="a">{typeCategory[0].description}</div>
+              </div>
+            <div className="imgClass"><img src={typeCategory[1].gif} width="400" height="500"/>
+              <div className="b">{typeCategory[1].description}</div>
+            </div>
+            <FooterWithUs/>
+          </div>
+        )
+      }
     }
   }
 }
+
+{/*<div><img src={typeCategory[0].gif} width="400" height="500"/></div>*/}
+{/*<div className="b">{typeCategory[0].description}</div>*/}
 
 //{typeCategory.map(game => (<div key={game.id}>{game.gif}</div>))}
 
