@@ -43,7 +43,7 @@ class Categories extends Component {
         return (
           <div>
             <Filters/>
-              <div><img src={typeCategory[0].gif} width="400" height="500"/>
+              <div className="imgClassFirst"><img src={typeCategory[0].gif} width="350" height="438"/>
                 <div class="aFun">{typeCategory[0].description}</div>
               </div>
             <FooterWithUs/>
@@ -53,10 +53,10 @@ class Categories extends Component {
         return (
           <div>
             <Filters/>
-              <div className="imgClassFirst"><img src={typeCategory[0].gif} width="400" height="500"/>
+              <div className="imgClassFirst"><img src={typeCategory[0].gif} width="350" height="438"/>
                 <div className="a">{typeCategory[0].description}</div>
               </div>
-            <div className="imgClass"><img src={typeCategory[1].gif} width="400" height="500"/>
+            <div className="imgClass"><img src={typeCategory[1].gif} width="350" height="438"/>
               <div className="b">{typeCategory[1].description}</div>
             </div>
             <FooterWithUs/>
