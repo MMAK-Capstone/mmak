@@ -26,11 +26,11 @@ async function seed() {
 			category: 'fun'
 		}),
 		Game.create({
-			name: 'Science Fighter',
-			description: 'Help the scientist defeat the environmental injustices! Complete level 3 in order to win!',
-			gif: '/pictures/mathGame.png',
+			name: 'Compare Garden',
+			description: 'Review inequalities in the compare garden. Earning 100 points will make you a winner!',
+			gif: '/gamePics/compare.gif',
 			score: 0,
-			gameUrl: 'https://test-game-46120.firebaseapp.com/',
+			gameUrl: 'https://island-runner-9bd31.firebaseapp.com/',
 			category: 'edu'
 		})
 	]);
