@@ -9,19 +9,19 @@ async function seed() {
 
 	const games = await Promise.all([
     Game.create({
-      name: 'Science Fighter',
-      description: 'Help the scientist defeat the environmental injustices! Complete level 3 in order to win!',
-      gif: '/pictures/mathGame.png',
+      name: 'Math Masters',
+      description: 'Can you figure out if the logic and divisibility statements are true or false?',
+      gif: '/gamePics/math-masters.gif',
       score: 0,
-      gameUrl: 'https://test-game-46120.firebaseapp.com/',
+      gameUrl: 'https://mmak-math-masters.firebaseapp.com/',
       category: 'edu'
     }),
 		Game.create({
-			name: 'Compare Garden',
-			description: 'Review inequalities in the compare garden. Earning 100 points will make you a winner!',
+			name: 'Compare In Forest',
+			description: 'Review inequalities in the forest. Earning 50 points will make you a winner!',
 			gif: '/gamePics/compare.gif',
 			score: 0,
-			gameUrl: 'https://island-runner-9bd31.firebaseapp.com/',
+			gameUrl: 'https://compare-in-forest.firebaseapp.com/',
 			category: 'edu'
 		}),
 		Game.create({
