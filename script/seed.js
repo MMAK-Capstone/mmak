@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../server/db');
-const { User, Game, Question } = require('../server/db/models');
+const {Game} = require('../server/db/models');
 
 async function seed() {
 	await db.sync({ force: true });
@@ -17,6 +17,14 @@ async function seed() {
       category: 'edu'
     }),
 		Game.create({
+			name: 'Compare Garden',
+			description: 'Review inequalities in the compare garden. Earning 100 points will make you a winner!',
+			gif: '/gamePics/compare.gif',
+			score: 0,
+			gameUrl: 'https://island-runner-9bd31.firebaseapp.com/',
+			category: 'edu'
+		}),
+		Game.create({
 			name: 'Island Runner',
 			description:
 				'How long can you run through the island while dodging vines and branches? Play this game to find out!',
@@ -24,31 +32,9 @@ async function seed() {
 			score: 0,
 			gameUrl: 'https://island-runner-9bd31.firebaseapp.com/',
 			category: 'fun'
-		}),
-    Game.create({
-      name: 'Math Masters',
-      description: 'Are the math facts and riddles true or false? Earn 100 points to win!',
-      gif: '/gamePics/math-masters.gif',
-      score: 0,
-      gameUrl: 'https://mmak-math-masters.firebaseapp.com/',
-      category: 'edu'
-    }),
-	]);
-	console.log(`seeded ${games.length} games`);
-	console.log(`seeded successfully`);
-
-	const questions = await Promise.all([
-		Question.create({ level: 'medium', text: '456 is divisible by 2', answer: 'true', filter: 'math' }),
-		Question.create({ level: 'easy', text: 'What is 2 +2?', answer: '4', filter: 'math' }),
-		Question.create({
-			level: 'hard',
-			text: '456 is divisible by 10 without remainders',
-			answer: 'false',
-			filter: 'math'
 		})
 	]);
-
-	console.log(`seeded ${questions.length} games`);
+	console.log(`seeded ${games.length} games`);
 	console.log(`seeded successfully`);
 }
 
