@@ -9,7 +9,20 @@ const AWS = require('aws-sdk');
 const fs = require('fs');
 const bluebird = require('bluebird');
 const multiparty = require('multiparty');
-const { IMAGE_COLLECTION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../secrets');
+
+let IMAGE_COLLECTION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY;
+
+if (process.env.NODE_ENV === 'production') {
+	IMAGE_COLLECTION = process.env.IMAGE_COLLECTION;
+	AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID
+	AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
+} else {
+	let secrets = require('../secrets');
+	IMAGE_COLLECTION = secrets.IMAGE_COLLECTION;
+	AWS_ACCESS_KEY_ID = secrets.AWS_ACCESS_KEY_ID
+	AWS_SECRET_ACCESS_KEY = secrets.AWS_SECRET_ACCESS_KEY;
+}
+
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const db = require('./db');
 const sessionStore = new SequelizeStore({ db });
