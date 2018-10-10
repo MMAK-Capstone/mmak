@@ -39,17 +39,30 @@ class Categories extends Component {
         <FooterWithUs/>
       </div>
     } else {
-      return (
-        <div>
-          <Filters/>
-          {typeCategory.map(game => (
-            <div><img src={typeCategory[0].gif} width="400" height="500"/>
-              <div className="b">{typeCategory[0].description}</div>
+      if (typeCategory.length === 1){
+        return (
+          <div>
+            <Filters/>
+              <div><img src={typeCategory[0].gif} width="400" height="500"/>
+                <div class="aFun">{typeCategory[0].description}</div>
+              </div>
+            <FooterWithUs/>
+          </div>
+        )
+      } else {
+        return (
+          <div>
+            <Filters/>
+              <div className="imgClassFirst"><img src={typeCategory[0].gif} width="400" height="500"/>
+                <div className="a">{typeCategory[0].description}</div>
+              </div>
+            <div className="imgClass"><img src={typeCategory[1].gif} width="400" height="500"/>
+              <div className="b">{typeCategory[1].description}</div>
             </div>
-          ))}
-          <FooterWithUs/>
-        </div>
-      )
+            <FooterWithUs/>
+          </div>
+        )
+      }
     }
   }
 }

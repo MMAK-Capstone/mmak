@@ -78,10 +78,27 @@ html {
 	display: inline-block;
 }
 
+.a {
+  position: fixed;
+  left: 5%;
+  top: 70%;
+  width: 20%;
+  height: 50%;
+  border: transparent;
+  align: center;
+  font-size: 250%;
+  font-palette: dark;
+  font-style: italic;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 2px 2px darkblue;
+  color: floralwhite;
+}
+
 .b {
 	position: fixed;
 	right: 5%;
-	top: 20%;
+	top: 70%;
 	width: 20%;
 	height: 50%;
 	border: transparent;
@@ -93,6 +110,36 @@ html {
 	text-align: center;
 	text-shadow: 2px 2px darkblue;
 	color: floralwhite;
+}
+
+.aFun {
+  position: fixed;
+  right: 5%;
+  top: 30%;
+  width: 20%;
+  height: 50%;
+  border: transparent;
+  align: center;
+  font-size: 250%;
+  font-palette: dark;
+  font-style: italic;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 2px 2px darkblue;
+  color: floralwhite;
+}
+
+
+.imgClass{
+  position: fixed;
+  right: 5%;
+  top: 17%;
+}
+
+.imgClassFirst{
+  position: fixed;
+  left: 5%;
+  top: 17%;
 }
 
 /*.b {*/
