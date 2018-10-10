@@ -104,7 +104,6 @@ class Signup extends Component {
 					.catch((error) => {
 						console.error('Signup Error', error);
 					});
-				// console.log('State is', this.state);
 			})
 			.catch((error) => {
 				console.error('Signup Error', error);
@@ -131,63 +130,7 @@ class Signup extends Component {
 			uploadForm.append('image', photo);
 		});
 	}
-
 	render() {
-		// const { classes } = this.props;
-		// return (
-		// 	<div>
-		// 		<MuiThemeProvider>
-		// 			<Grid Container direction="column">
-		// 				<Grid container spacing={24}>
-		// 					<Grid item xs={12}>
-		// 						<Paper className={style.control}>
-		// 							<Typography align="center" variant="headline" color="primary">
-		// 								Create your Account
-		// 							</Typography>
-		// 						</Paper>
-		// 					</Grid>
-		// 				</Grid>
-		// 				<Grid container item spacing={8}>
-		// 					<Grid item sm={8}>
-		// 						<Paper>
-		// 							<Grid Container item direction="row-reverse">
-		// 								<Grid item sm={3}>
-		// 									<Paper className={style.camera}>xs1</Paper>
-		// 									{/* <Camera
-		// 									style={style.camera}
-		// 									ref={(cam) => {
-		// 										this.camera = cam;
-		// 									}}
-		// 								/> */}
-		// 								</Grid>
-		// 								<Grid item sm={3}>
-		// 									<Paper className={style.camera}>xs</Paper>
-		// 									{/* <img
-		// 									style={style.camera}
-		// 									ref={(img) => {
-		// 										this.img = img;
-		// 									}}
-		// 								/> */}
-		// 								</Grid>
-		// 							</Grid>
-		// 							<Grid container spacing={12} className={classes.captureButton}>
-		// 								<Grid item xs>
-		// 									{/* <Button type="button" variant="raised" color="secondary" onClick={this.takePicture}>
-		// 								Take Photo
-		// 							</Button> */}
-		// 									xs3
-		// 								</Grid>
-		// 							</Grid>
-		// 						</Paper>
-		// 					</Grid>
-		// 					<Grid item sm={4}>
-		// 						<Paper className={classes.paper}>xs</Paper>
-		// 					</Grid>
-		// 				</Grid>
-		// 			</Grid>
-		// 		</MuiThemeProvider>
-		// 	</div>
-		// );
 		return (
 			<div>
 				<MuiThemeProvider>
@@ -299,8 +242,4 @@ const mapDispatch = (dispatch) => {
 		submitUser: (user) => dispatch(signupthunk(user))
 	};
 };
-// Signup.propTypes = {
-// 	classes: PropTypes.object.isRequired
-// };
-// const withStyleSignUp = withStyles(styles)(Signup);
 export default connect(mapStateToProps, mapDispatch)(Signup);

@@ -46,10 +46,11 @@ class Review extends React.Component {
   }
 
   render() {
-    console.log(`PROPS in REVIEW COMPONENT`, this.props)
     const { rating } = this.state;
     const {classes} = this.props;
-    const reviews = this.props.reviews
+    console.log(`here are the props`, this.props)
+    const reviews = this.props.reviews;
+    const user = this.props.user.username
     return (                
         <div>
           <h2>Game Rating: {rating}</h2>
@@ -65,10 +66,18 @@ class Review extends React.Component {
             Submit Rating
             </Button>
           </form>
+          <h2>Previous Game Reviews</h2>
           <ul>
-            Previous Game Reviews
             {reviews? reviews.map(review => (
-              <li key ={review.id}>{review.rating}</li>
+              <li key ={review.id}>
+                Rating#{review.id}:
+                <StarRatingComponent
+                  name="reviewRating"
+                  starCount={review.rating}
+                  value={review.rating}
+                  starColor="Blue"
+                />
+              </li>
             )): null}
           </ul>
         </div>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Button from '@material-ui/core/Button';
-// import TextField from 'material-ui/TextField';
 import Camera from 'react-camera';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
@@ -46,7 +45,7 @@ class FaceLogin extends Component {
 
 	takePicture() {
 		this.camera.capture().then((data) => {
-			// axios.post('/create-collection-of-user');
+			axios.post('/create-collection-of-user');
 			const formData = new FormData();
 			formData.append('file', data);
 			axios
