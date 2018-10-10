@@ -99,7 +99,7 @@ class Categories extends Component {
         <Paper>
           <Tabs indicatorColor="secondary" centered>
             <Tab className="flash" label="You should login for playing"/>
-            <Tab label="Education Game" component={Link} to="/categories/edu"/>
+            <Tab className ="flash" label="Education Game" component={Link} to="/categories/edu"/>
             <Tab label="Fun Game" component={Link} to="/categories/fun"/>
             <Tab className="flash" label="You should login for playing"/>
           </Tabs>

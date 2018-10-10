@@ -83,10 +83,10 @@ class Homepage extends Component {
       <div>
         <Paper>
           <Tabs indicatorColor="secondary" centered>
-            <Tab className="flash" label="You should login for playing"/>
+            <Tab className="flash" label="Login To Play"/>
             <Tab label="Education Game" component={Link} to="/categories/edu"/>
             <Tab label="Fun Game" component={Link} to="/categories/fun"/>
-            <Tab className="flash" label="You should login for playing"/>
+            <Tab className="flash" label="Login To Play"/>
           </Tabs>
         </Paper>
         <div class="footer">
