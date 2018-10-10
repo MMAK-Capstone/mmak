@@ -1,0 +1,4 @@
+id,name,category,description,gif,score,gameUrl,createdAt,updatedAt,userId
+1,Math Masters,edu,Are the math facts and riddles true or false? Earn 100 points to win!,/gamePics/math-masters.gif,0,https://mmak-math-masters.firebaseapp.com/,2018-10-10 14:31:36.223-04,2018-10-10 14:31:36.223-04,
+2,Compare Garden,edu,Review inequalities in the compare garden. Earning 100 points will make you a winner!,/gamePics/compare.gif,0,https://island-runner-9bd31.firebaseapp.com/,2018-10-10 14:31:36.224-04,2018-10-10 14:31:36.224-04,
+3,Island Runner,fun,How long can you run through the island while dodging vines and branches? Play this game to find out!,/gamePics/island-runner.gif,0,https://island-runner-9bd31.firebaseapp.com/,2018-10-10 14:31:36.224-04,2018-10-10 14:31:36.224-04,
