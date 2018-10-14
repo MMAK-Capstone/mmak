@@ -10,7 +10,10 @@ Our team developed three original games:
 - Math Masters
 - Compare in Forest
 - Island Runner
+
+
 ![IslandRunner](https://media.giphy.com/media/7STqSi67HAPw5Rf946/giphy.gif)
+
 
 The games use a combination of entertaining and educational styles to engage the children who might use the site.
 
