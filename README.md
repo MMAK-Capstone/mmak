@@ -7,9 +7,9 @@ Developers:
 - Michelle Messenger
 
 Our team developed three original games:
-- Math Masters
-- Compare in Forest
-- Island Runner
+- [Math Masters](https://github.com/Keyairra-S-Wright/math-master)
+- [Compare in Forest](https://github.com/MMAK-Capstone/CompareIN-Forest)
+- [Island Runner](https://github.com/MMAK-Capstone/island-runner)
 
 
 ![IslandRunner](https://media.giphy.com/media/7STqSi67HAPw5Rf946/giphy.gif)
