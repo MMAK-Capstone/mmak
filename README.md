@@ -1,4 +1,4 @@
-An edutainment webapp for elementary-aged youth. Visit www.MmaksGameRoom.com.
+An edutainment webapp for elementary-aged youth. Visit https://www.MmaksGameRoom.com or https://mmak.herokuapp.com/
 
 Developers:
 - Asya Slutskaya
